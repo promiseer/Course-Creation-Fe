@@ -14,6 +14,7 @@ function Navbar() {
     e.preventDefault();
     navigate("/welcome");
   };
+
   return (
     <nav className="navbars">
       <span className="nav-brands" onClick={handleSubmit}>
@@ -29,8 +30,8 @@ function Navbar() {
               COURSES
             </Link>
           </li>
-          <li className={`menu-item ${isActive("/qna") ? "active" : ""}`}>
-            <Link to="/qna" className="menu-link">
+          <li className={`menu-item ${isActive("/qna-vault") ? "active" : ""}`}>
+            <Link to="/qna-vault" className="menu-link">
               Q&A VAULT
             </Link>
           </li>

@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Routes,
   Navigate,
@@ -16,7 +16,12 @@ import {
   Resources,
   Support,
   Profile,
+  Module,
+  Lesson,
+  QnaVault,
+  Course,
 } from "./pages";
+
 function App() {
   return (
     <Router>
@@ -36,7 +41,13 @@ function Layout() {
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/welcome" element={<Welcome />} />
+
         <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:courseId" element={<Course />} />
+        <Route path="/modules/:moduleId" element={<Module />} />
+        <Route path="/lessons/:lessonId" element={<Lesson />} />
+
+        <Route path="/qna-vault" element={<QnaVault />} />
         <Route path="/qna" element={<Qna />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/support" element={<Support />} />
