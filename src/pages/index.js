@@ -10,6 +10,7 @@ import Module from "./Module";
 import Lesson from "./Lesson";
 import QnaVault from "./QnaVault";
 import Course from "./Course";
+import Dashboard from "./Dashboard";
 
 export {
   Signin,
@@ -24,4 +25,5 @@ export {
   Lesson,
   QnaVault,
   Course,
+  Dashboard,
 };

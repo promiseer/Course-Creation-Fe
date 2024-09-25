@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
+import Icons from "../../public";
 
 function CardCoursesPages({
   key,
   images,
   title,
   status,
+  views,
   description,
   boxCaptionsClass,
-  boxCaptionsClassTitle,
 }) {
   return (
     <div key={key ? key : null} className="box">
@@ -18,13 +19,7 @@ function CardCoursesPages({
         className={`box-captions ${boxCaptionsClass ? boxCaptionsClass : ""}`}
       >
         <div className="box-headers">
-          <h2
-            className={`title ${
-              boxCaptionsClassTitle ? boxCaptionsClassTitle : ""
-            }`}
-          >
-            {title}
-          </h2>
+          <h2 className="title">{title}</h2>
           {status == "Completed" ? (
             <span className="status">
               <i className="bi bi-check2 text-white text-[27.15px]"></i>
@@ -36,17 +31,36 @@ function CardCoursesPages({
           <div className="bottom">
             <p>{description}</p>
             <div className="indicators-percent">
-              <span>80% to completed</span>
+              <div className="indicators-percent-top">
+                <span>80% to completed</span>
+                <span className="views">
+                  <img src="/images/icons/layericons.png" alt="" />
+                  {views}
+                </span>
+              </div>
               <label>
                 <div className="indicators w-[80%]"></div>
               </label>
             </div>
           </div>
         ) : null}
+        {status == "Completed" ? (
+          <div className="px-4">
+            <div className="indicators-percent">
+              <label>
+                <div className="indicators w-[100%]"></div>
+              </label>
+            </div>
+          </div>
+        ) : null}
 
         {status == "Locked" ? (
-          <span className="status">
-            <i className="bi bi-lock-fill text-white text-[27.15px]"></i>
+          <span className="status px-[16px] py-[39px] flex items-center justify-end">
+            <img
+              src="/images/icons/lockicons.svg"
+              alt=""
+              className="w-14 h-14"
+            />
           </span>
         ) : null}
       </div>
@@ -60,9 +74,9 @@ CardCoursesPages.propTypes = {
   images: PropTypes.string,
   title: PropTypes.string,
   status: PropTypes.string,
+  views: PropTypes.string,
   description: PropTypes.string,
   boxCaptionsClass: PropTypes.string,
-  boxCaptionsClassTitle: PropTypes.string,
 };
 
 export default CardCoursesPages;

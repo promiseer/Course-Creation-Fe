@@ -20,6 +20,7 @@ import {
   Lesson,
   QnaVault,
   Course,
+  Dashboard,
 } from "./pages";
 
 function App() {
@@ -40,6 +41,7 @@ function Layout() {
       <Routes>
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/welcome" element={<Welcome />} />
 
         <Route path="/courses" element={<Courses />} />

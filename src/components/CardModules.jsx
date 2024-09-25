@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function CardCourses({
+function CardModules({
   className,
   images,
   childLabel,
@@ -23,7 +23,7 @@ function CardCourses({
         <div className="card-descriptions">
           <span className="card-descriptions-label">{childLabel}</span>
           <div className="card-descriptions-headers">
-            <h2 className="card-title">{label}</h2>
+            <h2 className="card-title truncate">{label}</h2>
             <ul className="card-title-right">
               <li>
                 <i className="bi bi-clock text-[15.1px]"></i>
@@ -46,7 +46,7 @@ function CardCourses({
   );
 }
 
-CardCourses.propTypes = {
+CardModules.propTypes = {
   className: PropTypes.string,
   images: PropTypes.string,
   childLabel: PropTypes.string,
@@ -56,4 +56,4 @@ CardCourses.propTypes = {
   descriptions: PropTypes.string,
 };
 
-export default CardCourses;
+export default CardModules;

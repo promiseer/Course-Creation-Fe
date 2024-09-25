@@ -25,26 +25,43 @@ function Navbar() {
       </button>
       <div className={`navbars-menus-block ${isOpen ? "open" : ""}`}>
         <ul className="menu">
-          <li className={`menu-item ${isActive("/courses") ? "active" : ""}`}>
-            <Link to="/courses" className="menu-link">
-              COURSES
-            </Link>
-          </li>
-          <li className={`menu-item ${isActive("/qna-vault") ? "active" : ""}`}>
-            <Link to="/qna-vault" className="menu-link">
-              Q&A VAULT
-            </Link>
-          </li>
-          <li className={`menu-item ${isActive("/resources") ? "active" : ""}`}>
-            <Link to="/resources" className="menu-link">
-              RESOURCES
-            </Link>
-          </li>
-          <li className={`menu-item ${isActive("/support") ? "active" : ""}`}>
-            <Link to="/support" className="menu-link">
-              SUPPORT
-            </Link>
-          </li>
+          {location.pathname !== "/dashboard" && (
+            <>
+              <li
+                className={`menu-item ${isActive("/courses") ? "active" : ""}`}
+              >
+                <Link to="/courses" className="menu-link">
+                  COURSES
+                </Link>
+              </li>
+              <li
+                className={`menu-item ${
+                  isActive("/qna-vault") ? "active" : ""
+                }`}
+              >
+                <Link to="/qna-vault" className="menu-link">
+                  Q&A VAULT
+                </Link>
+              </li>
+              <li
+                className={`menu-item ${
+                  isActive("/resources") ? "active" : ""
+                }`}
+              >
+                <Link to="/resources" className="menu-link">
+                  RESOURCES
+                </Link>
+              </li>
+              <li
+                className={`menu-item ${isActive("/support") ? "active" : ""}`}
+              >
+                <Link to="/support" className="menu-link">
+                  SUPPORT
+                </Link>
+              </li>
+            </>
+          )}
+
           <li className={`menu-item ${isActive("/profile") ? "active" : ""}`}>
             <Link to="/profile" className="menu-link">
               MY PROFILE

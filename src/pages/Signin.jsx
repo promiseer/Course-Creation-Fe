@@ -25,7 +25,10 @@ function Signin() {
       }),
     onSuccess: (data) => {
       setTokenCookie("token", data?.data?.token);
-      setUser("user", data?.data?.user_display_name);
+      setUser("user", {
+        name: data?.data?.user_display_name,
+        id: data?.data?.user_id,
+      });
       navigate("/courses");
     },
   });

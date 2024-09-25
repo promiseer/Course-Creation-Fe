@@ -6,6 +6,11 @@ import { useApiService } from "../hooks/axios";
 
 import { Link } from "react-router-dom";
 
+import { decode } from "he";
+
+import { LoadingOverlay } from "@mantine/core";
+import { useCookies } from "react-cookie";
+
 export default function Courses() {
   var getBackgroundColor = (row, column) => {
     // Mendefinisikan warna berdasarkan posisi
@@ -17,31 +22,44 @@ export default function Courses() {
       return row % 2 === 0 ? "bg-textPrimary" : "bg-newprimary";
     }
   };
-
+  const [userCookie] = useCookies(["user"]);
   const apiService = useApiService();
 
-  const { data: courseListResponse } = useQuery({
+  const { data: courseListResponse, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: () => apiService.get("/ldlms/v2/sfwd-courses"),
+    queryFn: () => apiService.get("/cct/v1/courses"),
   });
 
+  const { data: courseAccessListResponse } = useQuery({
+    queryKey: ["courses", `userId=${userCookie.user.id}`],
+    queryFn: () =>
+      apiService.get(`/ldlms/v2/users/${userCookie.user.id}/courses`),
+    enabled: !!userCookie.user.id,
+  });
+
+  const userCourseAccessIds =
+    courseAccessListResponse?.data?.map((course) => course.id) || [];
+
   const courseList =
-    courseListResponse?.data?.map((value) => {
+    courseListResponse?.data?.map((value, index) => {
+      const hasAccess = userCourseAccessIds.includes(value.id);
+
       return {
         id: value.id,
         childLabel: "MODULE 1.3",
-        label: value.title.rendered,
+        label: decode(value.title),
         time: "1 Hour 24 Minutes",
         views: 8,
-        image: "../../public/images/mycourses/1.png",
+        image: value.thumbnail,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        status: "Scheduled",
+        status: hasAccess ? "Scheduled" : "Locked",
       };
     }) || [];
 
   return (
     <>
+      <LoadingOverlay zIndex={999} visible={isLoading} />
       <section className="section section-welcome">
         <div className="col-span-12 md:col-span-12 flex flex-col justify-center ">
           <div className="text-welcome">
@@ -58,12 +76,14 @@ export default function Courses() {
         {courseList.map((course, index) => (
           <Link to={`/courses/${course.id}`}>
             <CardCoursesPages
-              key={course?.id}
               images={course.image}
               title={course.label}
               status={course.status}
+              views={course.views}
               description={course.description}
-              boxCaptionsClass={index % 2 === 0 ? "eventclass" : "oddclass"}
+              boxCaptionsClass={
+                index % 2 === 0 ? "box-schedule" : "box-default"
+              }
               boxCaptionsClassTitle={
                 course.status == "Scheduled"
                   ? "font-[800] text-newprimary"

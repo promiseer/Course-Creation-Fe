@@ -5,7 +5,9 @@ export default {
     extend: {
       colors: {
         newprimary: "#376489",
+        newprimarySmoth: "#92B2D1",
         newsecondary: "#F1E1E4", // Tambahkan warna lain sesuai kebutuhan
+        newsecondarySmoth: "#B29292", // Tambahkan warna lain sesuai kebutuhan
         textGreyColor: "#738CA5",
         textPrimary: "#C1989F",
         themeBg: "#FAF5F0",
@@ -28,6 +30,9 @@ export default {
         raleway: ["Raleway", "sans-serif"],
         mognolia: ["Magnolia Script", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
+        sfpro: ["SF Pro Display", "sans-serif"],
+        sorcesanspro: ["Source Sans Pro", "sans-serif"],
       },
     },
   },

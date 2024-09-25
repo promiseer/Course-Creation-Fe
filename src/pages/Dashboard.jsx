@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import dummydata from "../data/dummydata";
 import Icons from "../../public/";
 
-function Profile() {
+export default function Dashboard() {
   const [isSelected, setIsSelected] = useState(0);
 
   const [chartData, setChartData] = useState({
@@ -153,5 +153,3 @@ function Profile() {
     </section>
   );
 }
-
-export default Profile;

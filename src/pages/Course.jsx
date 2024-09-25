@@ -1,18 +1,60 @@
 import { useState } from "react";
 
 import dummydata from "../data/dummydata";
-import { CardCourses } from "../components";
+import CardModules from "../components/CardModules";
+
+import { useQuery } from "@tanstack/react-query";
+import { useApiService } from "../hooks/axios";
+
+import { useParams } from "react-router-dom";
+import { decode } from "he";
+
+import { LoadingOverlay } from "@mantine/core";
 
 export default function Course() {
   const [isId, setisId] = useState(1);
   const [isClassId, setisClassId] = useState(1);
+  const apiService = useApiService();
+  const { courseId } = useParams();
+
+  const { data: courseModulesResponse, isLoading: isGettingCourseModules } =
+    useQuery({
+      queryKey: ["course-modules", `id=${courseId}`],
+      queryFn: () =>
+        apiService.get(`/ldlms/v2/sfwd-modules?course=${courseId}`),
+    });
+
+  const { data: courseDetailsResponse, isLoading: isGettingCourseDetails } =
+    useQuery({
+      queryKey: ["course-details", `id=${courseId}`],
+      queryFn: () => apiService.get(`/ldlms/v2/sfwd-courses/${courseId}`),
+    });
+
+  const courseDetails = courseDetailsResponse?.data;
+
+  const courseModules = courseModulesResponse?.data?.map((value) => {
+    return {
+      id: value?.id,
+      childLabel: "MODULE 1.3",
+      label: decode(value?.title?.rendered || ""),
+      time: "1 Hour 24 Minutes",
+      views: 8,
+      image: "../../public/images/mycourses/1.png",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      status: "Scheduled",
+    };
+  });
 
   return (
     <section className="section section-welcome">
+      <LoadingOverlay
+        zIndex={999}
+        visible={isGettingCourseModules || isGettingCourseDetails}
+      />
       <div className="col-span-12 md:col-span-6 flex flex-col">
         <div className="text-welcome">
-          <span>Welcome</span>
-          <span>Course Name</span>
+          <span>{decode(courseDetails?.title?.rendered || "")}</span>
         </div>
         <div className="vidio-player">
           <img src=".//images/topvidioline.png" className="topBgVidio" alt="" />
@@ -39,13 +81,13 @@ export default function Course() {
         <div className="box-tabs">
           <ul className="tabs-list">
             <li className={`${isId === 1 ? "active" : ""}`}>
-              <button onClick={() => setisId(1)}>Courses</button>
+              <button onClick={() => setisId(1)}>Checklist</button>
             </li>
             <li className={`${isId === 2 ? "active" : ""}`}>
-              <button onClick={() => setisId(2)}>Resources</button>
+              <button onClick={() => setisId(2)}>Worksheet</button>
             </li>
             <li className={`${isId === 3 ? "active" : ""}`}>
-              <button onClick={() => setisId(3)}>QnA</button>
+              <button onClick={() => setisId(3)}>Resources</button>
             </li>
           </ul>
           <div className="tabs-main">
@@ -90,7 +132,7 @@ export default function Course() {
         </div>
       </div>
 
-      <div className="col-span-12 md:col-span-6 flex flex-col">
+      <div className="col-span-12 md:col-span-6 flex flex-col ">
         <div className="box-tabs mb-8">
           {/* <ul className="tabs-list tabs-list-class">
             <li className={`${isClassId === 1 ? "active" : ""}`}>
@@ -103,8 +145,8 @@ export default function Course() {
           <div className="tabs-main">
             <div className={`tabs-content ${isClassId === 1 ? "active" : ""}`}>
               <ul className="list-courses">
-                {dummydata.courses.map((course, index) => (
-                  <CardCourses
+                {courseModules?.map((course, index) => (
+                  <CardModules
                     key={index} // Set the key here
                     className={
                       index % 2 === 0 ? "eventclass" : "bg-textPrimary"

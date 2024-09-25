@@ -178,10 +178,56 @@ const qnaTopics = [
   },
 ];
 
+const myProfiles = [
+  {
+    id: 1,
+    childname: "My",
+    name: "COURSES",
+    image: "../../public/images/mycourses/1.png",
+  },
+  {
+    id: 2,
+    childname: "Useful",
+    name: " RESOURCES",
+    image: "../../public/images/mycourses/2.png",
+  },
+  {
+    id: 3,
+    childname: "",
+    name: "COACHING",
+    image: "../../public/images/mycourses/3.png",
+  },
+  {
+    id: 4,
+    childname: "",
+    name: "CHALLENGE",
+    image: "../../public/images/resources/1.png",
+  },
+  {
+    id: 5,
+    childname: "",
+    name: "SUPPORT",
+    image: "../../public/images/resources/2.png",
+  },
+  {
+    id: 6,
+    childname: "Upcoming",
+    name: "WORKSHOPS",
+    image: "../../public/images/support/support.png",
+  },
+  {
+    id: 6,
+    childname: "Upcoming",
+    name: "EVENTS",
+    image: "../../public/images/mycourses/1.png",
+  },
+];
+
 const dummydata = {
   courses,
   coursesArticles,
   qnaTopics,
+  myProfiles,
 };
 
 export default dummydata;
