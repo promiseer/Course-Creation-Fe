@@ -5,14 +5,15 @@ import Icons from "../../public/index.js";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
-import { useDispatch } from "react-redux";
-import { login } from "../redux/actions/authActions.jsx";
+import { useDispatch, useSelector  } from "react-redux";
+import { login  } from "../redux/actions/authActions.jsx";
 
 function Login() {
     const [isPassword, setIsPassword] = useState(false);
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const errorMessage = useSelector((state) => state.auth.error);
 
     const {
         register,
@@ -22,14 +23,11 @@ function Login() {
 
     const { mutate: signIn, isLoading } = useMutation({
         mutationFn: async ({ username, password }) => {
-            const result = await dispatch(login({ username, password }));
-            if (typeof result === "string") {
-                setLoginError(result);
-            } else {
-                navigate("/courses");
-            }
+            await dispatch(login({ username, password }));
+            navigate("/courses");
         },
         onSuccess: () => {
+            setLoginError("");
             navigate("/courses");
         },
         onError: (error) => {
@@ -38,6 +36,7 @@ function Login() {
     });
 
     const handleLogin = handleSubmit((values) => {
+        setLoginError("");
         signIn({
             username: values.email,
             password: values.password,
@@ -118,10 +117,7 @@ function Login() {
                         </div>
 
                         {/* Display login error message */}
-                        {loginError && (
-                            <div className="text-danger">{loginError}</div>
-                        )}
-                         {loginError && <div className="error">{loginError}</div>}
+                        {errorMessage && <p style={{ color: 'red', maxWidth:'300px' }}>{errorMessage}</p>} {/* Display the error message */}
 
                         {/* Add loading state here when loggin in */}
                         <button
@@ -129,8 +125,9 @@ function Login() {
                             className="btn btn-signin"
                             disabled={isLoading}
                         >
-                            {isLoading ? "Signing in..." : "Signin"}
+                            {isLoading ? "Loading..." : "Signin"}
                         </button>
+                        {loginError && <p style={{ color: 'red',maxWidth:'300px' }}>{loginError}</p>}
                         <a href="#" className="forgot-password">
                             Forgot Password?
                         </a>
