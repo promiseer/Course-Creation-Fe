@@ -10,20 +10,30 @@ import { login } from "../redux/actions/authActions.jsx";
 
 function Login() {
     const [isPassword, setIsPassword] = useState(false);
+    const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const { mutate: signIn, isLoading } = useMutation({
         mutationFn: async ({ username, password }) => {
-            return await dispatch(login({ username, password }));
+            const result = await dispatch(login({ username, password }));
+            if (typeof result === "string") {
+                setLoginError(result);
+            } else {
+                navigate("/courses");
+            }
         },
         onSuccess: () => {
             navigate("/courses");
         },
         onError: (error) => {
-            console.error("Login failed from Login Page", error);
+            setLoginError(error.message || "Login failed. Please try again.");
         },
     });
 
@@ -33,6 +43,10 @@ function Login() {
             password: values.password,
         });
     });
+
+    function setisPassword(value) {
+        setIsPassword(value);
+    }
 
     return (
         <div className="signin-page">
@@ -58,6 +72,11 @@ function Login() {
                                         },
                                     })}
                                 />
+                                {errors.email && (
+                                    <span className="text-danger mt-2 ml-6">
+                                        {errors.email.message}
+                                    </span>
+                                )}
                                 <span className="input-icons">
                                     <i className="bi bi-person-circle"></i>
                                 </span>
@@ -78,6 +97,11 @@ function Login() {
                                         },
                                     })}
                                 />
+                                {errors.password && (
+                                    <span className="text-danger mt-2 ml-6">
+                                        {errors.password.message}
+                                    </span>
+                                )}
                                 <span
                                     className="input-icons show-password"
                                     onClick={() => setisPassword(!isPassword)}
@@ -92,9 +116,20 @@ function Login() {
                                 </span>
                             </div>
                         </div>
+
+                        {/* Display login error message */}
+                        {loginError && (
+                            <div className="text-danger">{loginError}</div>
+                        )}
+                         {loginError && <div className="error">{loginError}</div>}
+
                         {/* Add loading state here when loggin in */}
-                        <button type="submit" className="btn btn-signin">
-                            Sign In
+                        <button
+                            type="submit"
+                            className="btn btn-signin"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Signing in..." : "Signin"}
                         </button>
                         <a href="#" className="forgot-password">
                             Forgot Password?
