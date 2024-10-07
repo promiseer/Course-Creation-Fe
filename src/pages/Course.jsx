@@ -30,6 +30,8 @@ export default function Course() {
       queryFn: () => apiService.get(`/ldlms/v2/sfwd-courses/${courseId}`),
     });
 
+  //debugger;
+
   const courseDetails = courseDetailsResponse?.data;
 
   const courseModules = courseModulesResponse?.data?.map((value) => {
@@ -39,7 +41,7 @@ export default function Course() {
       label: decode(value?.title?.rendered || ""),
       time: "1 Hour 24 Minutes",
       views: 8,
-      image: "../../public/images/mycourses/1.png",
+      image: "./images/mycourses/1.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       status: "Scheduled",

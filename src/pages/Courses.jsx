@@ -10,6 +10,9 @@ import { decode } from "he";
 
 import { LoadingOverlay } from "@mantine/core";
 import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
+
+const cookies = new Cookies();
 
 export default function Courses() {
   var getBackgroundColor = (row, column) => {
@@ -22,19 +25,24 @@ export default function Courses() {
       return row % 2 === 0 ? "bg-textPrimary" : "bg-newprimary";
     }
   };
-  const [userCookie] = useCookies(["user"]);
+  // Retrieve user cookie and safely parse it
+  const userCookie = cookies.get("user");
+  const parsedUserCookie = userCookie ? userCookie : null;
+
   const apiService = useApiService();
 
+  // Fetch course list
   const { data: courseListResponse, isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: () => apiService.get("/cct/v1/courses"),
   });
 
+  // Fetch course access list for the user
   const { data: courseAccessListResponse } = useQuery({
-    queryKey: ["courses", `userId=${userCookie.user.id}`],
+    queryKey: ["courses", `userId=${parsedUserCookie?.id}`],
     queryFn: () =>
-      apiService.get(`/ldlms/v2/users/${userCookie.user.id}/courses`),
-    enabled: !!userCookie.user.id,
+      apiService.get(`/ldlms/v2/users/${parsedUserCookie?.id}/courses`),
+    enabled: !!parsedUserCookie?.id,
   });
 
   const userCourseAccessIds =
@@ -74,7 +82,7 @@ export default function Courses() {
       </section>
       <section className="section-courses">
         {courseList.map((course, index) => (
-          <Link to={`/courses/${course.id}`}>
+          <Link to={`/courses/${course.id}`} key={course.id}>  {/* Added key prop */}
             <CardCoursesPages
               images={course.image}
               title={course.label}
@@ -85,7 +93,7 @@ export default function Courses() {
                 index % 2 === 0 ? "box-schedule" : "box-default"
               }
               boxCaptionsClassTitle={
-                course.status == "Scheduled"
+                course.status === "Scheduled" // Use === for comparison
                   ? "font-[800] text-newprimary"
                   : "font-normal text-white"
               }
@@ -93,6 +101,7 @@ export default function Courses() {
           </Link>
         ))}
       </section>
+
       {/* Courses articles */}
       {/* <section className="section section-welcome">
         <div className="col-span-12 md:col-span-12 flex flex-col justify-center md:min-h-[594px]">

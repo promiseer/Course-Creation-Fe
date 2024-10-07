@@ -1,6 +1,5 @@
-// axios.ts
 import Axios, { AxiosRequestConfig } from "axios";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie"; // Import Cookies directly
 
 // Create a custom Axios instance
 const apiService = Axios.create({
@@ -10,16 +9,15 @@ const apiService = Axios.create({
 
 // Create a hook to configure Axios with a token
 export const useApiService = () => {
-  const [tokenCookie] = useCookies(["token"]);
+  const cookies = new Cookies(); // Use Cookies instance directly
 
   const withToken = async (config: AxiosRequestConfig) => {
-    const token = await tokenCookie.token;
+    const token = cookies.get("jwtToken"); // Get token from cookies directly
 
     return {
       ...config,
       headers: {
         ...config.headers,
-
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     };
@@ -29,3 +27,6 @@ export const useApiService = () => {
 
   return apiService;
 };
+
+// Named export for apiService
+export { apiService };
