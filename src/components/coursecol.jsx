@@ -1,7 +1,7 @@
   import React, { useState } from "react";
   import next from '../assets/next.svg';
 
-  const CoursePage = () => {
+  const CoursePage = ({ courseName }) => {
     const [activeTab, setActiveTab] = useState(0);
     const [checklistItems, setChecklistItems] = useState([
       { label: "Checklist 1", color: "bblue", completed: false },
@@ -26,10 +26,7 @@
         {/* Header */}
         <div className="text-center md:mb-[20px] mb-[50px] w-full max-w-[890px]">
           <div className="font-normal text-rose text-[41px] font-magnolia leading-[56.4px]">
-            Welcome
-          </div>
-          <div className="font-normal text-rose text-[41px]  font-magnolia leading-[56.4px] ">
-            Course Name
+            {courseName}
           </div>
         </div>
 
