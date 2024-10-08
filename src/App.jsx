@@ -1,5 +1,5 @@
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
@@ -11,7 +11,7 @@ import { Navbar } from "./components";
 import {
   Signin,
   Welcome,
-  Courses,
+  CoursesPage,
   Qna,
   Resources,
   Support,
@@ -44,7 +44,7 @@ function Layout() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/welcome" element={<Welcome />} />
 
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:courseId" element={<Course />} />
         <Route path="/modules/:moduleId" element={<Module />} />
         <Route path="/lessons/:lessonId" element={<Lesson />} />
