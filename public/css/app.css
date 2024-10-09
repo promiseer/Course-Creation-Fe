@@ -1005,3 +1005,85 @@ section.section {
         -translate-y-[50%];
   }
 }
+
+
+.dashboard-dount a.circle-1:hover {
+  transform: scale(1.12) translate(-27px, -4px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-1 path.lastpath {
+  transform: translate(-6px, -5px) scaleX(1.022);
+}
+
+.dashboard-dount a.circle-2:hover {
+  transform: scale(1.12) translate(-48px, -14px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-2 path.lastpath {
+  transform: translate(3px, -3px) scale(1.02) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dashboard-dount a.circle-3:hover {
+  transform: scale(1.12) translate(-54px, -34px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-3 path.lastpath {
+  transform: translate(4px, 1.5px) scale(1.012) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dashboard-dount a.circle-4:hover {
+  transform: scale(1.12) translate(-43px, -51px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-4 path.lastpath {
+  transform: translate(2px, 3.5px) scale(1.02) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dashboard-dount a.circle-5:hover {
+  transform: scale(1.12) translate(-20px, -51px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-5 path.lastpath {
+  transform: translate(-2px, 3.5px) scale(1.02) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dashboard-dount a.circle-6:hover {
+  transform: scale(1.12) translate(-7px, -33px);
+  z-index: 10;
+}
+.dashboard-dount a.circle-6 path.lastpath {
+  transform: translate(-4px, 1.5px) scale(1.018) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.dashboard-dount a.circle-7:hover {
+  transform: scale(1.13) translate(-12px, -18px);
+  z-index: 10;
+}
+
+.dashboard-dount a.circle-7 path.lastpath {
+  transform: translate(-3px, -3.5px) scale(1.018) rotate(0deg);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dashboard-dount a > path.firstpath {
+  fill: #274c6999;
+  transition: all 0.3s ease-in-out;
+}
+.dashboard-dount a:hover > path.firstpath {
+  fill: #e4c1c999;
+}
+.dashboard-dount a > path.lastpath {
+  fill: transparent;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+.dashboard-dount a:hover > path.lastpath {
+  fill: #c1989f;
+  z-index: -1;
+}
