@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import Icons from "../../public/index.js";
+import Icons from "../components/Icons.js";
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/authActions';
 import { Cookies } from "react-cookie"; 
@@ -31,10 +31,10 @@ function Navbar() {
   return (
     <nav className="navbars">
       <span className="nav-brands" onClick={handleSubmit}>
-        <img src={Icons.brandLogo} alt="logo" />
+        <img src={Icons.BrandLogo} alt="logo" />
       </span>
       <button className="nav-navigations" onClick={() => setIsOpen(!isOpen)}>
-        <img src={Icons.humbergerMenu} alt="menu" />
+        <img src={Icons.HumbergerMenu} alt="menu" />
       </button>
       <div className={`navbars-menus-block ${isOpen ? "open" : ""}`}>
         <ul className="menu">

@@ -1,8 +1,31 @@
   import React, { useState } from "react";
   import next from '../assets/next.svg';
+  import { useQuery } from "@tanstack/react-query";
+  import { useApiService } from "../hooks/axios";
+  import { useParams } from "react-router-dom";
+  import { Cookies } from "react-cookie";
+  
+  const cookies = new Cookies();
+
+  function calculateCompletion(currentValue, targetValue) {
+    if (isNaN(currentValue) || isNaN(targetValue) || currentValue === null || targetValue === null) {
+      return '0';
+    }
+    if (targetValue === 0) {
+      return '0';
+    }
+  
+    const percentage = (currentValue / targetValue) * 100;
+    return `${percentage.toFixed(2)}`;
+  }
 
   const CoursePage = ({ courseName }) => {
+    const apiService = useApiService();
+    const { courseId } = useParams();
     const [activeTab, setActiveTab] = useState(0);
+    const userCookie = cookies.get("user");
+    const parsedUserCookie = userCookie ? userCookie : null;
+
     const [checklistItems, setChecklistItems] = useState([
       { label: "Checklist 1", color: "bblue", completed: false },
       { label: "Checklist 2", color: "frose", completed: false },
@@ -20,6 +43,16 @@
       { label: 'WORKSHEET', index: 1 },
       { label: 'RESOURCES', index: 2 }
     ];
+
+    const { data: courseProgressResponse, isLoading: isGettingCourseDetails } =
+    useQuery({
+      queryKey: ["course-details", `id=${courseId}`],
+      queryFn: () => apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
+    });
+    
+    const courseProgress = courseProgressResponse?.data;
+
+    const progressPercent =courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 0
 
     return (
       <div className='w-full bg-[#FAF5F0] flex flex-col items-center px-4 md:px-0'>
@@ -54,7 +87,7 @@
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/watch?v=9kmCGzH6uds" // Replace with actual video URL
+                  src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" // Replace with actual video URL
                   title="Course Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -138,10 +171,10 @@
         {/* Progress Bar */}
         <div className="w-full max-w-[850px] flex flex-col items-start mb-[30px]">
           <div className="font-montserrat text-bblue font-bold text-[14px] md:text-[16px] mb-2">
-            80% Completed
+            {progressPercent}% Completed
           </div>
           <div className="w-full border border-bblue h-[5px] md:h-[12px]">
-            <div className="bg-bblue h-[5px] md:h-[12px]" style={{ width: "80%" }}></div>
+            <div className="bg-bblue h-[5px] md:h-[12px]" style={{ width: `${progressPercent}%` }}></div>
           </div>
         </div>
       </div>

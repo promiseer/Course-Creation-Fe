@@ -17,7 +17,7 @@ import {
   Login,
   SignUp,
   Welcome,
-  CoursesPage,
+  CourseList,
   Qna,
   Resources,
   Support,
@@ -67,10 +67,10 @@ function Layout() {
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
         <Route path="/welcome" element={<ProtectedRoute><Welcome /></ProtectedRoute>} />
 
-        <Route path="/courses" element={<ProtectedRoute><CoursesPage/></ProtectedRoute>} />
+        <Route path="/courses" element={<ProtectedRoute><CourseList/></ProtectedRoute>} />
         <Route path="/courses/:courseId" element={<ProtectedRoute><Course /></ProtectedRoute>} />
-        <Route path="/modules/:moduleId" element={<ProtectedRoute><Module /></ProtectedRoute>} />
-        <Route path="/lessons/:lessonId" element={<ProtectedRoute><Lesson /></ProtectedRoute>} />
+        <Route path="/courses/:courseId/modules/:moduleId" element={<ProtectedRoute><Module /></ProtectedRoute>} />
+        <Route path="/courses/:courseId/modules/:moduleId/lesson/:lessonId" element={<ProtectedRoute><Lesson /></ProtectedRoute>} />
 
         <Route path="/qna-vault" element={<ProtectedRoute><QnaVault /></ProtectedRoute>} />
         <Route path="/qna" element={<ProtectedRoute><Qna /></ProtectedRoute>} />

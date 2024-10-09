@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './card';
+import Card from './Card';
 import image1 from '../assets/v1.png'; 
 import image2 from '../assets/v2.png';
 import image3 from '../assets/v3.png';
@@ -61,12 +61,12 @@ const CardList = () => {
   ];
 
   return (
-    <div className="   w-full md:p-0   p-4">
-
+    <div className="w-full md:p-0 p-4">
       <div className="grid grid-cols-1 gap-0.1">
         {items.map((item) => (
           <Card
             key={item.id}
+            id={item.id}
             moduleName={item.moduleName}
             title={item.title}
             duration={item.duration}

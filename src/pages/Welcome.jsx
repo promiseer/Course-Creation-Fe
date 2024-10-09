@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CoursePage from '../components/coursecol.jsx'; // Left column component (video & course content)
-import CardList from '../components/list'; // Right column component (module list)
+import CoursePage from '../components/CourseDetails.jsx'; // Left column component (video & course content)
+import CardList from '../components/CardList.jsx'; // Right column component (module list)
 
 const CoursePagee = () => {
   const [activeTab, setActiveTab] = useState('My Courses'); // Adding state to track the active tab for mobile view

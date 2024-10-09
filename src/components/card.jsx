@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from "react-router-dom";
 import classNames from 'classnames';
 import StudentsIcon from '../assets/stu.svg';
 import playIcon from '../assets/play.svg';
 import WhiteClockIcon from '../assets/whiteclock.svg';
 
 const Card = ({
+  url,
   moduleName,
   title,
   duration,
@@ -17,13 +19,15 @@ const Card = ({
   cardOverlayColor,
   textAreaColor,
   borderColor = 'border-dark-rose',
+  courseId= '',
+  moduleId=''
 }) => {
   const [activeTab, setActiveTab] = useState('My Courses');
 
   return (
     <div>
       {/* Tabs - Only visible on mobile */}
-     
+      <Link to={url}>
 
       {/* Card Component */}
       <div
@@ -74,6 +78,7 @@ const Card = ({
           </p>
         </div>
       </div>
+      </Link>
     </div>
   );
 };
