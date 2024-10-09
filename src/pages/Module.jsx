@@ -26,7 +26,7 @@ export default function Module() {
 
   const { data: moduleDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
-      queryKey: ["course-details", `id=${moduleId}`],
+      queryKey: ["module-details", `id=${moduleId}`],
       queryFn: () => apiService.get(`/ldlms/v2/sfwd-modules/${moduleId}`),
     });
 

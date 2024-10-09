@@ -46,7 +46,7 @@
 
     const { data: courseProgressResponse, isLoading: isGettingCourseDetails } =
     useQuery({
-      queryKey: ["course-details", `id=${courseId}`],
+      queryKey: ["course-progress", `id=${courseId}`],
       queryFn: () => apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
     });
     
