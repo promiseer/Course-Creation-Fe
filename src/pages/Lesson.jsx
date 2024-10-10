@@ -24,7 +24,7 @@ export default function Lesson() {
   const lessonDetails = lessonDetailsResponse?.data;
 
    // Mutation for marking as complete
-  const { mutate: markAsComplete, isLoading: isMarkingComplete } = useMutation({
+  const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } = useMutation({
     mutationFn: (data) => apiService.post(`/cct/v1/mark-lesson-complete`, data),
     onSuccess: () => {
       queryClient.invalidateQueries(["lesson-details", `id=${lessonId}`]);
@@ -44,7 +44,7 @@ export default function Lesson() {
       status: "complete",
      }
 
-    markAsComplete(data);
+     markAsCompleteOrIncomplete(data);
   };
 
   return (
@@ -75,7 +75,14 @@ export default function Lesson() {
             <span>Mark as Complete</span>
             <i className="bi bi-chevron-right"></i>
           </button>
-         
+          <button onClick={() => {}} className="btn customBtnPrimary">
+            <span>Next Lesson</span>
+            <i className="bi bi-chevron-right"></i>
+          </button>
+          <button onClick={() => {}} className="btn customBtnPrimary">
+            <span>Previous Lesson</span>
+            <i className="bi bi-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
