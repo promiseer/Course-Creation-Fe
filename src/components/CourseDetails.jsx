@@ -169,14 +169,14 @@
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full max-w-[850px] flex flex-col items-start mb-[30px]">
+        {/* <div className="w-full max-w-[850px] flex flex-col items-start mb-[30px]">
           <div className="font-montserrat text-bblue font-bold text-[14px] md:text-[16px] mb-2">
             {progressPercent}% Completed
           </div>
           <div className="w-full border border-bblue h-[5px] md:h-[12px]">
             <div className="bg-bblue h-[5px] md:h-[12px]" style={{ width: `${progressPercent}%` }}></div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   };
