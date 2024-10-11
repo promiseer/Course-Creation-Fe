@@ -52,13 +52,13 @@
     
     const courseProgress = courseProgressResponse?.data;
 
-    const progressPercent =courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 0
+    const progressPercent =courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 80
 
     return (
       <div className='w-full bg-[#FAF5F0] flex flex-col items-center px-4 md:px-0'>
         {/* Header */}
         <div className="text-center md:mb-[20px] mb-[50px] w-full max-w-[890px]">
-          <div className="font-normal text-rose text-[41px] font-magnolia leading-[56.4px]">
+          <div className="font-normal text-rose text-[41px] font-mognolia leading-[56.4px]">
             {courseName}
           </div>
         </div>
@@ -86,8 +86,9 @@
               <div className="relative w-full h-[200px] md:h-[340px] overflow-hidden">
                 <iframe 
                   width="100%" 
-                  height="100%" 
-                  src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" // Replace with actual video URL
+                            height="100% "
+                            src="https://www.youtube.com/embed/dQw4w9WgXcdQ"
+
                   title="Course Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

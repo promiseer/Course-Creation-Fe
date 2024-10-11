@@ -17,7 +17,8 @@ export default {
         brown: "#B29292", // Corrected color declaration (removed extra colon)
         blue: "#92B2D1", // Corrected spacing
         "dark-blue": "#376489",
-        gradb: "rgba(115, 140, 165, 0.52)", // Add custom color
+        gradb: "rgba(115, 140, 165, 0.52)",
+        gradr:"rgba(228, 193, 201, 0.6)",
         whitee: "#FAF5F0",
         beige: "#F5F5DC",
         rose: "#C1989F",
