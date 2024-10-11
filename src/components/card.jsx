@@ -113,7 +113,7 @@ const Card = ({
               </div>
 
               {/* Duration and Students - Right Aligned */}
-              <div className="flex items-center justify-end space-x-2 mb-1 md:mt-[-2px]">
+              <div className="flex items-center justify-start space-x-2 mb-1 md:mt-[-2px]">
                 <span className="flex text-white font-source leading-4 items-center">
                   <img src={WhiteClockIcon} alt="Duration" className="h-[4vw] w-[4vw] md:h-[15px] md:w-[15px] mr-1" /> {duration || "1 hour 24 minutes"}
                 </span>
