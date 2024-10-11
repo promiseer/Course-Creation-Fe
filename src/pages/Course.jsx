@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CourseDetails from '../components/CourseDetails.jsx'; // Left column component (video & course content)
-import Card from '../components/Card.jsx'; // Right column component (module list)
+import Card from '../components/card.jsx'; // Right column component (module list)
 import { useQuery } from "@tanstack/react-query";
 import { useApiService } from "../hooks/axios";
 import { useParams } from "react-router-dom";

@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageGrid from '../components/gridimg'; // Adjust the import path as necessary
 import img from '../assets/mn.svg';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import next from '../assets/next.svg'
 import t1 from '../assets/t1.svg';
 import t2 from '../assets/t2.svg';

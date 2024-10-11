@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './card';
 import image1 from '../assets/v1.png'; 
 import image2 from '../assets/v2.png';
 import image3 from '../assets/v3.png';
@@ -54,7 +54,7 @@ const CardList = () => {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       imageSrc: image3,
       textColor: 'text-white',
-      imageOverlayColor: 'gradb',
+      imageOverlayColor: 'dark-blue',
       textAreaColor: 'bg-blue',
       borderColor: 'border-brown',
     },
