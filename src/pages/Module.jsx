@@ -30,8 +30,6 @@ export default function Module() {
       queryFn: () => apiService.get(`/ldlms/v2/sfwd-modules/${moduleId}`),
     });
 
-  //debugger;
-
   const moduleDetails = moduleDetailsResponse?.data;
 
   const moduleLessons = moduleLessonsResponse?.data.map((value, index) => {

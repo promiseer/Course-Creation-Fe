@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icons from "../components/Icons.js";
 import { useQuery, useMutation, useQueryClient  } from "@tanstack/react-query";
 import { useApiService } from "../hooks/axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { decode } from "he";
 import { Cookies } from "react-cookie";
 
@@ -11,6 +11,7 @@ const cookies = new Cookies();
 export default function Lesson() {
   const apiService = useApiService();
   const { lessonId, courseId, moduleId } = useParams();
+
   const userCookie = cookies.get("user");
   const parsedUserCookie = userCookie ? userCookie : null;
   const queryClient = useQueryClient();
@@ -22,6 +23,15 @@ export default function Lesson() {
   });
 
   const lessonDetails = lessonDetailsResponse?.data;
+
+  const { data: moduleLessonsResponse, isLoading: isGettingCourseModules } =
+  useQuery({
+    queryKey: ["moduleLessons", `id=${moduleId}`],
+    queryFn: () =>
+      apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}`),
+  });
+
+  
 
    // Mutation for marking as complete
   const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } = useMutation({
@@ -47,6 +57,27 @@ export default function Lesson() {
      markAsCompleteOrIncomplete(data);
   };
 
+  
+  const findAdjacentIds= (arr, targetId) => {
+
+    // Find the index of the object with the targetId
+    const index = arr.findIndex(item => item.id == targetId);
+    // If the targetId is not found, return null
+    if (index === -1) {
+      return { message: 'ID not found' };
+    }
+
+    // Get the previous and next IDs, if they exist
+    const previousId = index > 0 ? arr[index - 1].id : null;
+    const nextId = index < arr.length - 1 ? arr[index + 1].id : null;
+  
+    return {
+      previousId: previousId,
+      nextId: nextId
+    };
+  }
+  const adjacentIds = moduleLessonsResponse?.data ? findAdjacentIds(moduleLessonsResponse?.data, lessonId) : {};
+  
   return (
     <section className="section section-welcome">
       <div className="col-span-12 md:col-span-12 flex flex-col px-[15vw]">
@@ -70,19 +101,30 @@ export default function Lesson() {
             alt=""
           />
         </div>
-        <div className="flex flex-col items-center justify-center gap-4 mt-5">
-          <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
-            <span>Mark as Complete</span>
-            <i className="bi bi-chevron-right"></i>
-          </button>
-          <button onClick={() => {}} className="btn customBtnPrimary">
-            <span>Next Lesson</span>
-            <i className="bi bi-chevron-right"></i>
-          </button>
-          <button onClick={() => {}} className="btn customBtnPrimary">
-            <span>Previous Lesson</span>
-            <i className="bi bi-chevron-right"></i>
-          </button>
+        <div className="flex flex-row items-center justify-between gap-4 mt-5">
+          <div className="w-1/4">
+            {
+              adjacentIds?.previousId &&
+              <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`} className="btn customBtnPrimary">
+                <span>Previous Lesson</span>
+                <i className="bi bi-chevron-left"></i>
+              </Link>
+            }
+          </div>
+          <div className="w-1/4">
+            <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
+              <span>Mark as Complete</span>
+            </button>
+          </div>
+          <div className="w-1/4">
+            {
+            adjacentIds?.nextId &&
+            <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}`} className="btn customBtnPrimary">
+              <span>Next Lesson</span>
+              <i className="bi bi-chevron-right"></i>
+            </Link>
+            }
+          </div>
         </div>
       </div>
     </section>
