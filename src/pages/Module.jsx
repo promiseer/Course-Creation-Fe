@@ -1,130 +1,110 @@
-import { useState } from "react";
+import { useState } from 'react';
+import CoursePage from '../components/CourseDetails.jsx'; // Left column component (video & course content)
+import Card from '../components/card.jsx'; // Right column component (module list)
+import { useQuery } from "@tanstack/react-query";
+import { useApiService } from "../hooks/axios";
+import { useParams } from "react-router-dom";
+import { decode } from "he";
+import ModuleImage1 from '../assets/v1.png'; 
+import ModuleImage2 from '../assets/v2.png';
 
-import dummydata from "../data/dummydata";
-import CardCourses from "../components/CardCourses";
+// import { LoadingOverlay } from "@mantine/core";
 
 export default function Module() {
+  const [activeTab, setActiveTab] = useState('My Courses'); // Adding state to track the active tab for mobile view
   const [isId, setisId] = useState(1);
   const [isClassId, setisClassId] = useState(1);
+  const apiService = useApiService();
+  const { moduleId, courseId } = useParams();
+
+  const { data: moduleLessonsResponse, isLoading: isGettingCourseModules } =
+    useQuery({
+      queryKey: ["moduleLessons", `id=${moduleId}`],
+      queryFn: () =>
+        apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}`),
+    });
+
+  const { data: moduleDetailsResponse, isLoading: isGettingCourseDetails } =
+    useQuery({
+      queryKey: ["module-details", `id=${moduleId}`],
+      queryFn: () => apiService.get(`/ldlms/v2/sfwd-modules/${moduleId}`),
+    });
+
+  const moduleDetails = moduleDetailsResponse?.data;
+
+  const moduleLessons = moduleLessonsResponse?.data.map((value, index) => {
+    return {
+      id: value?.id,
+      childLabel: `LESSON ${index + 1}`,
+      label: decode(value?.title?.rendered || ""),
+      time: "1 Hour 24 Minutes",
+      views: 8,
+      image: index % 2 ? ModuleImage1 : ModuleImage2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      status: "Scheduled",
+      textColor: 'text-white',
+      imageOverlayColor: 'gradb',
+      textAreaColor: index % 2 ? 'bg-blue' : 'bg-brown',
+      borderColor: index % 2 ? 'border-brown' : 'border-dark-blue',
+    };
+  });
 
   return (
-    <section className="section section-welcome">
-      <div className="col-span-12 md:col-span-6 flex flex-col">
-        <div className="text-welcome">
-          <span>Welcome</span>
-          <span>Module Name</span>
-        </div>
-        <div className="vidio-player">
-          <img src=".//images/topvidioline.png" className="topBgVidio" alt="" />
-          <iframe
-            width="100%"
-            height="183.53"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-          <img
-            src=".//images/bottomvidioline.png"
-            className="bottomBgVidio"
-            alt=""
-          />
-        </div>
-        <div className="flex flex-col items-center justify-center gap-4 mt-5">
-          <a href="#" className="btn customBtnPrimary">
-            <span>START COURSE</span>
-            <i className="bi bi-chevron-right"></i>
-          </a>
-        </div>
-        <div className="box-tabs">
-          <ul className="tabs-list">
-            <li className={`${isId === 1 ? "active" : ""}`}>
-              <button onClick={() => setisId(1)}>Courses</button>
-            </li>
-            <li className={`${isId === 2 ? "active" : ""}`}>
-              <button onClick={() => setisId(2)}>Resources</button>
-            </li>
-            <li className={`${isId === 3 ? "active" : ""}`}>
-              <button onClick={() => setisId(3)}>QnA</button>
-            </li>
-          </ul>
-          <div className="tabs-main">
-            <div className={`tabs-content ${isId === 1 ? "active" : ""}`}>
-              <ul className="list-courses">
-                <li>
-                  <div className="checkbox-box">
-                    <input type="checkbox" id="checkbox3" />
-                    <i className="bi bi-check2-square"></i>
-                    <label htmlFor="checkbox3">Checklist 3</label>
-                  </div>
-                </li>
-                <li>
-                  <div className="checkbox-box">
-                    <input type="checkbox" id="checkbox3" />
-                    <i className="bi bi-check2-square"></i>
-                    <label htmlFor="checkbox3">Checklist 3</label>
-                  </div>
-                </li>
-                <li>
-                  <div className="checkbox-box">
-                    <input type="checkbox" id="checkbox3" />
-                    <i className="bi bi-check2-square"></i>
-                    <label htmlFor="checkbox3">Checklist 3</label>
-                  </div>
-                </li>
-              </ul>
+      <div className="bg-[#FAF5F0] md:min-h-screen h-full pt-20">
+        {/* Wrapper for layout with proper alignment */}
+        <div className="flex flex-col md:flex-row mt-[20px]">
+          {/* Left Column: Course Page Content */}
+          <div className="md:w-[60%] ml-[10px] md:ml-0 flex-grow">
+            <CoursePage courseName={decode(moduleDetails?.title?.rendered || "")}/>
+          </div>
+          {/* Mobile Tabs Section (Visible only on mobile) */}
+          <div className="md:hidden flex justify-center space-x-[10vw] my-4 mb-[30px]">
+            {/* My Courses Tab */}
+            <div
+              onClick={() => setActiveTab('My Courses')}
+              className={`text-[4vw] leading-[20px] cursor-pointer font-oswald font-semibold ${
+                activeTab === 'My Courses' ? 'text-bblue border-b-2 border-bblue' : 'text-dark-rose'
+              }`}
+            >
+              My Courses
             </div>
-            <div className={`tabs-content ${isId === 2 ? "active" : ""}`}>
-              <p>Resources</p>
-            </div>
-            <div className={`tabs-content ${isId === 3 ? "active" : ""}`}>
-              <p>QnA</p>
+
+            {/* Courses Tab */}
+            <div
+              onClick={() => setActiveTab('Courses')}
+              className={`text-[4vw] leading-[20px] font-semibold font-oswald cursor-pointer ${
+                activeTab === 'Courses' ? 'text-bblue border-b-2 border-bblue' : 'text-dark-rose'
+              }`}
+            >
+              Courses
             </div>
           </div>
-        </div>
-        <div className="indicator-percent">
-          <span>80% to completed</span>
-          <label htmlFor="indicator-labels">
-            <div className="indicator w-[80%]"></div>
-          </label>
-        </div>
-      </div>
 
-      <div className="col-span-12 md:col-span-6 flex flex-col">
-        <div className="box-tabs mb-8">
-          {/* <ul className="tabs-list tabs-list-class">
-            <li className={`${isClassId === 1 ? "active" : ""}`}>
-              <button onClick={() => setisClassId(1)}>My Courses</button>
-            </li>
-            <li className={`${isClassId === 2 ? "active" : ""}`}>
-              <button onClick={() => setisClassId(2)}>Courses</button>
-            </li>
-          </ul> */}
-          <div className="tabs-main">
-            <div className={`tabs-content ${isClassId === 1 ? "active" : ""}`}>
-              <ul className="list-courses">
-                {dummydata.courses.map((course, index) => (
-                  <CardCourses
-                    key={index} // Set the key here
-                    className={
-                      index % 2 === 0 ? "eventclass" : "bg-textPrimary"
-                    }
-                    images={course.image}
-                    childLabel={course.childLabel}
-                    label={course.label}
-                    time={course.time}
-                    views={course.views}
-                    descriptions={course.description}
+          {/* Right Column: Card List, aligned to the right */}
+          <div className="md:w-[40%] mt-[20px] md:mt-[50px] flex justify-center md:justify-end">
+            <div className="w-full md:p-0 p-4">
+              <div className="grid grid-cols-1 gap-0.1">
+                {moduleLessons && moduleLessons.map((item) => (
+                  <Card
+                    key={item.id}
+                    url={`/courses/${courseId}/modules/${moduleId}/lesson/${item.id}`}
+                    moduleName={item.label}
+                    title={item.childLabel}
+                    duration={item.duration}
+                    students={item.students}
+                    description={item.description}
+                    imageSrc={item.image}
+                    textColor={item.textColor}
+                    imageOverlayColor={item.imageOverlayColor}
+                    textAreaColor={item.textAreaColor}
+                    borderColor={item.borderColor} // Pass the correct prop
                   />
                 ))}
-              </ul>
-            </div>
-            <div className={`tabs-content ${isClassId === 2 ? "active" : ""}`}>
-              <p>Courses</p>
-            </div>
+              </div>
+            </div>  
           </div>
         </div>
       </div>
-    </section>
   );
 }
