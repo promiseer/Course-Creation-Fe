@@ -51,7 +51,7 @@ export default function Course() {
     };
   });
 
-  console.log("@@ courseDetails", courseDetails)
+  //console.log("@@ courseDetails", courseDetails)
   return (
       <div className="bg-[#FAF5F0] md:min-h-screen h-full pt-20">
         {/* Wrapper for layout with proper alignment */}
