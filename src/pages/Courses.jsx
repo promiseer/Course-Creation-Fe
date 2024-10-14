@@ -97,7 +97,7 @@ export default function Courses() {
                   ? "font-[800] text-newprimary"
                   : "font-normal text-white"
               }
-              progress={course.progress}
+              progress={20}
             />
           </Link>
         ))}
