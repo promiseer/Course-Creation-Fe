@@ -21,7 +21,7 @@ export default function Module() {
     useQuery({
       queryKey: ["moduleLessons", `id=${moduleId}`],
       queryFn: () =>
-        apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}`),
+        apiService.get(`/ldlms/v2/sfwd-lessons?lesson=${moduleId}&course=${courseId}`),
     });
 
   const { data: moduleDetailsResponse, isLoading: isGettingCourseDetails } =

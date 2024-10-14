@@ -28,7 +28,7 @@ export default function Lesson() {
   useQuery({
     queryKey: ["moduleLessons", `id=${moduleId}`],
     queryFn: () =>
-      apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}`),
+      apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}&course=${courseId}`),
   });
 
   
@@ -36,6 +36,7 @@ export default function Lesson() {
    // Mutation for marking as complete
   const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } = useMutation({
     mutationFn: (data) => apiService.post(`/cct/v1/mark-lesson-complete`, data),
+    //mutationFn: apiService.post(`/ldlms/v2/sfwd-courses/${courseId}/steps`),
     onSuccess: () => {
       queryClient.invalidateQueries(["lesson-details", `id=${lessonId}`]);
     },

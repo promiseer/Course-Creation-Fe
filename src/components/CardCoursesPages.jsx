@@ -11,6 +11,7 @@ function CardCoursesPages({
   views,
   description,
   boxCaptionsClass,
+  progress
 }) {
   return (
     <div key={key ? key : null} className="box">
@@ -34,14 +35,14 @@ function CardCoursesPages({
             <p>{description}</p>
             <div className="indicators-percent">
               <div className="indicators-percent-top">
-                <span>80% to completed</span>
+                <span>{progress}% to completed</span>
                 <span className="views">
                   <img src={iconImage} alt="" />
                   {views}
                 </span>
               </div>
               <label>
-                <div className="indicators w-[80%]"></div>
+                <div className={`indicators w-[${progress}%]`}></div>
               </label>
             </div>
           </div>
