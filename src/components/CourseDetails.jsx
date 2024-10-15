@@ -4,6 +4,7 @@
   import { useApiService } from "../hooks/axios";
   import { useParams } from "react-router-dom";
   import { Cookies } from "react-cookie";
+  import { CourseAccessChecker } from "./access/CourseAccessChecker.jsx";
   
   const cookies = new Cookies();
 
@@ -21,10 +22,11 @@
 
   const CoursePage = ({ courseName }) => {
     const apiService = useApiService();
-    const { courseId } = useParams();
+    const { courseId, moduleId } = useParams();
     const [activeTab, setActiveTab] = useState(0);
     const userCookie = cookies.get("user");
     const parsedUserCookie = userCookie ? userCookie : null;
+    const userId = parsedUserCookie?.id;
 
     const [checklistItems, setChecklistItems] = useState([
       { label: "Checklist 1", color: "bblue", completed: false },
@@ -52,8 +54,8 @@
     
     const courseProgress = courseProgressResponse?.data;
 
-    const progressPercent =courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 80
-
+    const progressPercent =courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 0
+//console.log(userId);
     return (
       <div className='w-full bg-[#FAF5F0] flex flex-col items-center px-4 md:px-0'>
         {/* Header */}
@@ -100,11 +102,15 @@
 
           {/* Start Course Button (Centered) */}
           <div className="flex justify-center w-full">
-            <button className="bg-dark-blue font-montserrat font-semibold text-[14px] md:text-[22px] text-white w-[170px] h-[30px] md:w-[240px] md:h-[45px] rounded-full flex items-center justify-center gap-3">
-              START COURSE
-              <img src={next} alt="Next" className="w-[8px] h-[15px] md:w-[18px] md:h-[18px]" />
-            </button>
+            <CourseAccessChecker courseId={courseId} userId={userId}>
+                <button
+                    className="bg-dark-blue font-montserrat font-semibold text-[14px] md:text-[22px] text-white w-[170px] h-[30px] md:w-[240px] md:h-[45px] rounded-full flex items-center justify-center gap-3">
+                  GO AHEAD
+                  <img src={next} alt="Next" className="w-[8px] h-[15px] md:w-[18px] md:h-[18px]" />
+                </button>
+              </CourseAccessChecker>
           </div>
+
         </div>
 
         {/* Tabs Section */}
