@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import dummydata from "../data/dummydata";
+//import dummydata from "../data/dummydata";
 import CardModules from "../components/CardModules";
 
 import { useQuery } from "@tanstack/react-query";
