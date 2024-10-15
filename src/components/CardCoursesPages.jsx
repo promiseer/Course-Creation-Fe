@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import Icons from "../../public";
+import iconImage from "../../public/images/icons/layericons.png";
+import iconLock from "../../public/images/icons/lockicons.svg";
 
 function CardCoursesPages({
   key,
@@ -9,6 +11,7 @@ function CardCoursesPages({
   views,
   description,
   boxCaptionsClass,
+  progress
 }) {
   return (
     <div key={key ? key : null} className="box">
@@ -32,14 +35,14 @@ function CardCoursesPages({
             <p>{description}</p>
             <div className="indicators-percent">
               <div className="indicators-percent-top">
-                <span>80% to completed</span>
+                <span>{progress}% to completed</span>
                 <span className="views">
-                  <img src="/images/icons/layericons.png" alt="" />
+                  <img src={iconImage} alt="" />
                   {views}
                 </span>
               </div>
               <label>
-                <div className="indicators w-[80%]"></div>
+                <div className={`indicators w-[${progress}%]`}></div>
               </label>
             </div>
           </div>
@@ -57,7 +60,7 @@ function CardCoursesPages({
         {status == "Locked" ? (
           <span className="status px-[16px] py-[39px] flex items-center justify-end">
             <img
-              src="/images/icons/lockicons.svg"
+              src={iconLock}
               alt=""
               className="w-14 h-14"
             />
@@ -74,7 +77,7 @@ CardCoursesPages.propTypes = {
   images: PropTypes.string,
   title: PropTypes.string,
   status: PropTypes.string,
-  views: PropTypes.string,
+  views: PropTypes.number,
   description: PropTypes.string,
   boxCaptionsClass: PropTypes.string,
 };

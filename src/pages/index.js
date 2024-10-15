@@ -1,6 +1,6 @@
 import Signin from "./Signin";
 import Welcome from "./Welcome";
-import Courses from "./Courses";
+import CourseList from "./CourseList";
 import Qna from "./Qna";
 import Resources from "./Resources";
 import Support from "./Support";
@@ -11,11 +11,13 @@ import Lesson from "./Lesson";
 import QnaVault from "./QnaVault";
 import Course from "./Course";
 import Dashboard from "./Dashboard";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 export {
   Signin,
   Welcome,
-  Courses,
+  CourseList,
   Qna,
   Resources,
   Support,
@@ -26,4 +28,6 @@ export {
   QnaVault,
   Course,
   Dashboard,
+  Login,
+  SignUp,
 };

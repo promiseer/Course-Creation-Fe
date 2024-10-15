@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { useLocation, Link, useNavigate } from "react-router-dom"; // Import useLocation and Link
-import Icons from "../../public/index.js";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import Icons from "../components/Icons.js";
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/actions/authActions';
+import { Cookies } from "react-cookie"; 
+
+const cookies = new Cookies();
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,19 +14,27 @@ function Navbar() {
   // Function to determine if a menu item is active
   const isActive = (path) => location.pathname === path;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/welcome");
   };
+  const token = cookies.get('jwtToken');
+
+    // Handle Logout
+    const handleLogout = () => {
+      dispatch(logout());
+      navigate('/login');
+    };
 
   return (
     <nav className="navbars">
       <span className="nav-brands" onClick={handleSubmit}>
-        <img src={Icons.brandLogo} alt="logo" />
+        <img src={Icons.BrandLogo} alt="logo" />
       </span>
       <button className="nav-navigations" onClick={() => setIsOpen(!isOpen)}>
-        <img src={Icons.humbergerMenu} alt="menu" />
+        <img src={Icons.HumbergerMenu} alt="menu" />
       </button>
       <div className={`navbars-menus-block ${isOpen ? "open" : ""}`}>
         <ul className="menu">
@@ -67,6 +80,17 @@ function Navbar() {
               MY PROFILE
             </Link>
           </li>
+
+          {token && (
+            <li className="menu-item">
+              <button className="menu-link" onClick={handleLogout}>LOGOUT</button>
+            </li>
+           )||(
+            <li className="menu-item">
+              <Link to="/signup" className="menu-link">SIGN UP</Link>
+            </li>
+           )}
+
         </ul>
       </div>
     </nav>
