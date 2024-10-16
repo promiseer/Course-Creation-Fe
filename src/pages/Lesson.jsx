@@ -122,7 +122,7 @@ export default function Lesson() {
           <div className="w-1/4">
             {
               !isGettingCourseProgress &&
-              (lessonCompleted ?
+              (courseProgressResponse?.data.topics[moduleId][lessonId] ?
                 <div className="btn customBtnPrimary">
                   <span>Lesson Completed</span><span className="text-green text-[20px]">&#10003;</span>
                 </div>
@@ -135,7 +135,7 @@ export default function Lesson() {
           <div className="w-1/4">
             {
               adjacentIds?.nextId &&
-              <Link to={lessonCompleted ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
+              <Link to={courseProgressResponse?.data.topics[moduleId][lessonId] ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
                 <span>Next Lesson</span>
                 <i className="bi bi-chevron-right"></i>
               </Link>
