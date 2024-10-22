@@ -149,7 +149,7 @@ export default function CoursesPage() {
         image: value.thumbnail,
         description: value.description || "",
         isLocked: !hasAccess,
-        progress: hasAccess ? value.progress || 80 : undefined,
+        // progress: hasAccess ? value.progress || 0 : undefined,
       };
     }) || [];
 

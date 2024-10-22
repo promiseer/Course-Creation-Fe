@@ -28,7 +28,7 @@ export default function Course() {
   const { data: courseDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
       queryKey: ["course-details", `id=${courseId}`],
-      queryFn: () => apiService.get(`/ldlms/v2/sfwd-courses/${courseId}`),
+      queryFn: () => apiService.get(`/ldlms/v1/sfwd-courses/${courseId}`),
     });
 
   const courseDetails = courseDetailsResponse?.data;
@@ -51,7 +51,7 @@ export default function Course() {
     };
   });
 
-  console.log("@@ courseDetails", courseDetails)
+  //console.log("@@ courseDetails", courseDetails)
   return (
       <div className="bg-[#FAF5F0] md:min-h-screen h-full pt-20">
         {/* Wrapper for layout with proper alignment */}

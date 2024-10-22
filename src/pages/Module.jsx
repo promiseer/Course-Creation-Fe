@@ -21,7 +21,7 @@ export default function Module() {
     useQuery({
       queryKey: ["moduleLessons", `id=${moduleId}`],
       queryFn: () =>
-        apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}`),
+        apiService.get(`/ldlms/v2/sfwd-lessons?lesson=${moduleId}&course=${courseId}`),
     });
 
   const { data: moduleDetailsResponse, isLoading: isGettingCourseDetails } =
@@ -49,6 +49,8 @@ export default function Module() {
       borderColor: index % 2 ? 'border-brown' : 'border-dark-blue',
     };
   });
+
+  //console.log(moduleDetails);
 
   return (
       <div className="bg-[#FAF5F0] md:min-h-screen h-full pt-20">
