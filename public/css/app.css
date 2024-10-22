@@ -134,7 +134,10 @@ body {
     w-full
     p-4
     md:p-0
-    bg-themeBg;
+    bg-themeBg
+    bg-opacity-50;
+
+    
 }
 .navbars-menus-block.open {
   @apply block;

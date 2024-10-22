@@ -1,5 +1,6 @@
 import BrandLogo from '../assets/brand.png';
 import HumbergerMenu from '../assets/icons/humbergermenu.svg';
+import BackToTop from '../assets/back-to-top.svg';
 import LoginImage from '../assets/loginimage.png';
 import TopVidioLine from '../assets/topvidioline.png';
 import BottomVidioLine from '../assets/bottomvidioline.png';
@@ -10,6 +11,7 @@ import Suportimage from '../assets/support/support.png';
 const Icons = {
   BrandLogo,
   HumbergerMenu,
+  BackToTop,
   LoginImage,
   TopVidioLine,
   BottomVidioLine,

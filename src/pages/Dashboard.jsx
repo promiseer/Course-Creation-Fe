@@ -17,7 +17,7 @@ function Dashboard() {
   return (
     <div className="w-full flex items-center justify-center  py-[100px] ">
       <div className="dashboard-dount">
-        <div className="relative w-[540px] h-[540px] mx-auto ">
+        <div className="relative w-[540px] h-[540px] mx-auto  hidden md:block">
           <svg
             className="overflow-visible"
             width="542"
@@ -54,6 +54,11 @@ function Dashboard() {
             );
           })}
         </div>
+        
+         {/* Mobile View with  Dashboard */}
+      <div className="md:hidden flex flex-col items-center justify-center h-[200px] bg-gray-100">
+
+      </div>
       </div>
     </div>
   );

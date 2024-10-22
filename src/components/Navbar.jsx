@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import Icons from "../components/Icons.js";
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,32 @@ const cookies = new Cookies();
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false); // State for back to top icon
+
   const location = useLocation(); // Get the current location
+
+    // Show Back to Top icon based on scroll position
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 200) {
+          setShowBackToTop(true);
+        } else {
+          setShowBackToTop(false);
+        }
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+  
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   // Function to determine if a menu item is active
   const isActive = (path) => location.pathname === path;
@@ -36,7 +61,7 @@ function Navbar() {
       <button className="nav-navigations" onClick={() => setIsOpen(!isOpen)}>
         <img src={Icons.HumbergerMenu} alt="menu" />
       </button>
-      <div className={`navbars-menus-block ${isOpen ? "open" : ""}`}>
+      <div className={`navbars-menus-block ${isOpen ? "open" : ""} `}>
         <ul className="menu">
           {location.pathname !== "/dashboard" && (
             <>
@@ -47,7 +72,7 @@ function Navbar() {
                   COURSES
                 </Link>
               </li>
-              <li
+              {/* <li
                 className={`menu-item ${
                   isActive("/qna-vault") ? "active" : ""
                 }`}
@@ -55,8 +80,8 @@ function Navbar() {
                 <Link to="/qna-vault" className="menu-link">
                   Q&A VAULT
                 </Link>
-              </li>
-              <li
+              </li> */}
+              {/* <li
                 className={`menu-item ${
                   isActive("/resources") ? "active" : ""
                 }`}
@@ -64,7 +89,7 @@ function Navbar() {
                 <Link to="/resources" className="menu-link">
                   RESOURCES
                 </Link>
-              </li>
+              </li> */}
               <li
                 className={`menu-item ${isActive("/support") ? "active" : ""}`}
               >
@@ -93,6 +118,15 @@ function Navbar() {
 
         </ul>
       </div>
+      {/* add back top functionality  use Icons.BackToTop Icon*/}
+      {showBackToTop && (
+        <button 
+          onClick={scrollToTop} 
+          className="fixed bottom-5 right-5 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-600 transition"
+        >
+          <img src={Icons.BackToTop} alt="Back to top" />
+        </button>
+      )}
     </nav>
   );
 }
