@@ -193,10 +193,10 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
-"@esbuild/linux-x64@0.21.5":
+"@esbuild/win32-x64@0.21.5":
   version "0.21.5"
-  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.21.5.tgz"
-  integrity sha512-1rYdTpyv03iycF1+BhzrzQJCdOuAOtaqHTWJZCWvijKD2N5Xu0TtVC8/+1faWqcP9iBCWOmjmhoH94dH82BxPQ==
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz"
+  integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -409,15 +409,10 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.19.2.tgz"
   integrity sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==
 
-"@rollup/rollup-linux-x64-gnu@4.22.2":
+"@rollup/rollup-win32-x64-msvc@4.22.2":
   version "4.22.2"
-  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.22.2.tgz"
-  integrity sha512-a0lkvNhFLhf+w7A95XeBqGQaG0KfS3hPFJnz1uraSdUe/XImkp/Psq0Ca0/UdD5IEAGoENVmnYrzSC9Y2a2uKQ==
-
-"@rollup/rollup-linux-x64-musl@4.22.2":
-  version "4.22.2"
-  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.22.2.tgz"
-  integrity sha512-sSWBVZgzwtsuG9Dxi9kjYOUu/wKW+jrbzj4Cclabqnfkot8Z3VEHcIgyenA3lLn/Fu11uDviWjhctulkhEO60g==
+  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.22.2.tgz"
+  integrity sha512-Yy8So+SoRz8I3NS4Bjh91BICPOSVgdompTIPYTByUqU66AXSIOgmW3Lv1ke3NORPqxdF+RdrZET+8vYai6f4aA==
 
 "@tanstack/query-core@5.59.0":
   version "5.59.0"
@@ -858,11 +853,6 @@ chokidar@^4.0.0:
   integrity sha512-mxIojEAQcuEvT/lyXq+jf/3cO/KoA6z4CeNDGGevTybECPOMFCnQy3OPahluUkbqgPNGw5Bi78UC7Po6Lhy+NA==
   dependencies:
     readdirp "^4.0.1"
-
-classnames@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.npmjs.org/classnames/-/classnames-2.5.1.tgz"
-  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
 
 clsx@^2.1.1:
   version "2.1.1"
