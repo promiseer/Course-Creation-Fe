@@ -43,7 +43,7 @@ function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/welcome");
+    navigate("/dashboard");
   };
   const token = cookies.get('jwtToken');
 

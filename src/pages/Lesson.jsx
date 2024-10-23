@@ -19,15 +19,16 @@ export default function Lesson() {
   // Get course progress to check if completed lesson
   const { data: courseProgressResponse, isLoading: isGettingCourseProgress } =
     useQuery({
-      queryKey: ["course-progress", `id=${lessonId}`],
-      queryFn: () => apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
+      queryKey: ["course-progress", { courseId, userId: parsedUserCookie?.id }], // Use object for clarity
+      queryFn: () =>
+        apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
     });
 
-  const lessonCompleted = courseProgressResponse?.data.topics[moduleId][lessonId];
+  const lessonCompleted = courseProgressResponse?.data.topics[moduleId]?.[lessonId]; // Added optional chaining
 
   const { data: lessonDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
-      queryKey: ["lesson-details", `id=${lessonId}`],
+      queryKey: ["lesson-details", lessonId],
       queryFn: () => apiService.get(`/ldlms/v2/sfwd-lessons/${lessonId}`),
     });
 
@@ -35,7 +36,7 @@ export default function Lesson() {
 
   const { data: moduleLessonsResponse, isLoading: isGettingCourseModules } =
     useQuery({
-      queryKey: ["moduleLessons", `id=${moduleId}`],
+      queryKey: ["moduleLessons", moduleId],
       queryFn: () =>
         apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}&course=${courseId}`),
     });
@@ -43,9 +44,8 @@ export default function Lesson() {
   // Mutation for marking as complete
   const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } = useMutation({
     mutationFn: (data) => apiService.post(`/cct/v1/mark-lesson-complete`, data),
-    //mutationFn: apiService.post(`/ldlms/v2/sfwd-courses/${courseId}/steps`),
     onSuccess: () => {
-      queryClient.invalidateQueries(["lesson-details", `id=${lessonId}`]);
+      queryClient.invalidateQueries(["lesson-details", lessonId]);
     },
     onError: (error) => {
       console.error("Error marking lesson as complete:", error);
@@ -60,31 +60,27 @@ export default function Lesson() {
       module_id: moduleId,
       lesson_id: lessonId,
       status: "complete",
-    }
+    };
 
     markAsCompleteOrIncomplete(data);
   };
 
-
   const findAdjacentIds = (arr, targetId) => {
-
-    // Find the index of the object with the targetId
     const index = arr.findIndex(item => item.id == targetId);
-    // If the targetId is not found, return null
     if (index === -1) {
       return { message: 'ID not found' };
     }
 
-    // Get the previous and next IDs, if they exist
     const previousId = index > 0 ? arr[index - 1].id : null;
     const nextId = index < arr.length - 1 ? arr[index + 1].id : null;
 
     return {
-      previousId: previousId,
-      nextId: nextId
+      previousId,
+      nextId,
     };
-  }
-  const adjacentIds = moduleLessonsResponse?.data ? findAdjacentIds(moduleLessonsResponse?.data, lessonId) : {};
+  };
+
+  const adjacentIds = moduleLessonsResponse?.data ? findAdjacentIds(moduleLessonsResponse.data, lessonId) : {};
 
   return (
     <section className="section section-welcome">
@@ -111,35 +107,34 @@ export default function Lesson() {
         </div>
         <div className="flex flex-row items-center justify-between gap-4 mt-5">
           <div className="w-1/4">
-            {
-              adjacentIds?.previousId &&
+            {adjacentIds.previousId && (
               <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`} className="btn customBtnPrimary">
                 <span>Previous Lesson</span>
                 <i className="bi bi-chevron-left"></i>
               </Link>
-            }
+            )}
           </div>
           <div className="w-1/4">
-            {
-              !isGettingCourseProgress &&
-              (courseProgressResponse?.data.topics[moduleId][lessonId] ?
+            {!isGettingCourseProgress && (
+              lessonCompleted ? (
                 <div className="btn customBtnPrimary">
-                  <span>Lesson Completed</span><span className="text-green text-[20px]">&#10003;</span>
+                  <span>Lesson Completed</span>
+                  <span className="text-green text-[20px]">&#10003;</span>
                 </div>
-                :
+              ) : (
                 <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
                   <span>Mark as Complete</span>
-                </button>)
-            }
+                </button>
+              )
+            )}
           </div>
           <div className="w-1/4">
-            {
-              adjacentIds?.nextId &&
-              <Link to={courseProgressResponse?.data.topics[moduleId][lessonId] ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
+            {adjacentIds.nextId && (
+              <Link to={lessonCompleted ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
                 <span>Next Lesson</span>
                 <i className="bi bi-chevron-right"></i>
               </Link>
-            }
+            )}
           </div>
         </div>
       </div>
