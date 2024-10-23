@@ -122,9 +122,9 @@ export default function Lesson() {
           <span className="text-green text-[16px]">&#10003;</span>
         </div>
       ) : (
-        <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
+        <div onClick={handleMarkAsComplete} className="btn customBtnPrimary">
           <span>Mark as Complete</span>
-        </button>
+        </div>
       )
     )}
   </div>
