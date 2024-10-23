@@ -182,7 +182,9 @@ section.section {
     gap-6
     md:gap-x-[92px]
     pt-28
-    px-[5rem];
+    /* px-[5rem] */
+    sm:px-8 
+    md:px-[5rem]; 
 }
 .section-welcome .text-welcome {
   @apply flex
@@ -210,8 +212,13 @@ section.section {
     relative
     p-3
     md:min-h-[304px]
-    h-[29rem];
-}
+    h-[29rem]
+    }
+    @media (max-width: 640px) { /* For small screens */
+      .section-welcome .vidio-player {
+        @apply h-auto /* Adjust height for smaller devices if needed */
+      }
+    }
 .section-welcome .vidio-player .topBgVidio,
 .section-welcome .vidio-player .bottomBgVidio {
   @apply absolute
@@ -233,13 +240,18 @@ section.section {
     z-10;
 }
 
+@media (max-width: 640px) { /* For small screens */
+  .section-welcome .vidio-player iframe {
+    @apply h-[200px]; /* Adjust height for mobile screens */
+  }
+}
 /* Components */
 .customBtnPrimary {
   @apply bg-newprimary
     rounded-full
     min-w-[139px]
-    md:w-[211px]
-    md:h-[45px]
+    /* md:w-[211px] */
+    /* md:h-[45px] */
     flex
     items-center
     justify-center

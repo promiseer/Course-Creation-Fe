@@ -30,7 +30,7 @@ const Support = () => {
 
 
       {/* Centered Title */}
-      <div className="font-normal text-center text-rose text-[41px] font-mognolia leading-[56.4px]">
+      <div className="font-normal text-center text-[#376489]  text-[41px] font-mognolia leading-[56.4px]">
 Support
       </div>
 

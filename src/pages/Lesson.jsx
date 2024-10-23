@@ -83,9 +83,9 @@ export default function Lesson() {
   const adjacentIds = moduleLessonsResponse?.data ? findAdjacentIds(moduleLessonsResponse.data, lessonId) : {};
 
   return (
-    <section className="section section-welcome">
-      <div className="col-span-12 md:col-span-12 flex flex-col px-[15vw]">
-        <div className="text-welcome">
+    <section className="section section-welcome px-[1vw] sm:px-[1vw]">
+<div className="col-span-12 md:col-span-12 flex flex-col px-[1vw] sm:px-[1vw] md:px-[15vw]">
+<div className="text-welcome">
           <span>Welcome</span>
           <span>{decode(lessonDetails?.title?.rendered || "")}</span>
         </div>
@@ -105,38 +105,39 @@ export default function Lesson() {
             alt=""
           />
         </div>
-        <div className="flex flex-row items-center justify-between gap-4 mt-5">
-          <div className="w-1/4">
-            {adjacentIds.previousId && (
-              <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`} className="btn customBtnPrimary">
-                <span>Previous Lesson</span>
-                <i className="bi bi-chevron-left"></i>
-              </Link>
-            )}
-          </div>
-          <div className="w-1/4">
-            {!isGettingCourseProgress && (
-              lessonCompleted ? (
-                <div className="btn customBtnPrimary">
-                  <span>Lesson Completed</span>
-                  <span className="text-green text-[20px]">&#10003;</span>
-                </div>
-              ) : (
-                <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
-                  <span>Mark as Complete</span>
-                </button>
-              )
-            )}
-          </div>
-          <div className="w-1/4">
-            {adjacentIds.nextId && (
-              <Link to={lessonCompleted ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
-                <span>Next Lesson</span>
-                <i className="bi bi-chevron-right"></i>
-              </Link>
-            )}
-          </div>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-4 mt-5">
+  <div className="w-full md:w-1/4">
+    {adjacentIds.previousId && (
+      <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`} className="btn customBtnPrimary">
+        <i className="bi bi-chevron-left"></i>
+        <span className="ml-2">Previous Lesson</span>
+      </Link>
+    )}
+  </div>
+  <div className="w-full md:w-1/4">
+    {!isGettingCourseProgress && (
+      lessonCompleted ? (
+        <div className="btn customBtnPrimary">
+          <span>Lesson Completed</span>
+          <span className="text-green text-[16px]">&#10003;</span>
         </div>
+      ) : (
+        <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
+          <span>Mark as Complete</span>
+        </button>
+      )
+    )}
+  </div>
+  <div className="w-full md:w-1/4">
+    {adjacentIds.nextId && (
+      <Link to={lessonCompleted ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
+        <span>Next Lesson</span>
+        <i className="bi bi-chevron-right ml-2"></i>
+      </Link>
+    )}
+  </div>
+</div>
+
       </div>
     </section>
   );

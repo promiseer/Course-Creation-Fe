@@ -55,12 +55,12 @@ const ImageGrid = ({ images }) => {
       ))}
 
       {/* Return Button */}
-      <div className="w-full mt-4 mb-8 flex justify-center md:justify-end col-span-2 md:col-span-3">
+      {/* <div className="w-full mt-4 mb-8 flex justify-center md:justify-end col-span-2 md:col-span-3">
         <button className="bg-dark-blue font-montserrat font-semibold text-[18px] text-white w-[270px] h-[50px] rounded-full flex items-center justify-center gap-3">
           RETURN TO COURSE
           <img src={next} alt="Next" className=" w-[8px] h-[15px] md:w-[8px] md:h-[15px] object-cover" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -80,13 +80,13 @@ const Courses = ({ courses }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 w-full mt-[10px] md:px-0">
-      {courses.map((course, index) => (
+<div className="grid grid-cols-1 md:grid-cols-3 w-full mt-[10px] md:px-0 gap-y-6 md:space-y-2">
+{courses.map((course, index) => (
         <div
           key={index}
           onMouseEnter={() => !course.isLocked && setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          className="md:w-[99.7%] w-[95%] md:mx-0 mx-auto transition-transform duration-300"
+          className={`md:w-[99.7%] w-[95%] md:mx-0 mx-auto transition-transform duration-300 ${hoveredIndex === index ? 'transform scale-100 shadow-lg border green ' : ''}`}
         >
           <Link to={`/courses/${course.id}`} key={course.id + index}>
             {hoveredIndex === index && !course.isLocked ? (

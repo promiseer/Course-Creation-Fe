@@ -33,7 +33,7 @@ const Resources = () => {
       {/* Header Section */}
       <Navbarr/>
       <div className="  mx-auto flex flex-col items-center justify-center text-center mb-8 md:mb-[30px] mt-[10px] md:mt-[50px]">
-        <h1 className="text-[#376489]  font-magnolia text-[40px] md:text-[50px] md:leading-[56px] mb-4">Course Name Resources</h1>
+        <h1 className="font-normal  text-[#376489]  font-mognolia text-[40px] md:text-[50px] md:leading-[56px] mb-4">Course Name Resources</h1>
         <p className=" md:mb-[80px] w-[344px] h-[87px]  leading-[18px] md:w-[990px] md:h-[72px]  text-center text-bblue md:text-[18px]  font-montserrat md:leading-[30px]  text-[12px]  ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

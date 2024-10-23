@@ -72,9 +72,9 @@ function Layout() {
         <Route path="/courses/:courseId/modules/:moduleId" element={<ProtectedRoute><Module /></ProtectedRoute>} />
         <Route path="/courses/:courseId/modules/:moduleId/lesson/:lessonId" element={<ProtectedRoute><Lesson /></ProtectedRoute>} />
 
-        {/* <Route path="/qna-vault" element={<ProtectedRoute><QnaVault /></ProtectedRoute>} /> */}
+        <Route path="/qna-vault" element={<ProtectedRoute><QnaVault /></ProtectedRoute>} />
         <Route path="/qna" element={<ProtectedRoute><Qna /></ProtectedRoute>} />
-        {/* <Route path="/resources" element={<ProtectedRoute><Resources /></ProtectedRoute>} /> */}
+        <Route path="/resources" element={<ProtectedRoute><Resources /></ProtectedRoute>} />
         <Route path="/support" element={<ProtectedRoute><Support /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/signup" element={<SignUp />} />

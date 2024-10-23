@@ -55,7 +55,7 @@ function Navbar() {
 
   return (
     <nav className="navbars">
-      <span className="nav-brands" onClick={handleSubmit}>
+      <span className="nav-brands cursor-pointer" onClick={handleSubmit}>
         <img src={Icons.BrandLogo} alt="logo" />
       </span>
       <button className="nav-navigations" onClick={() => setIsOpen(!isOpen)}>
