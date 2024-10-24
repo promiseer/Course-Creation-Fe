@@ -106,8 +106,8 @@ export default function Lesson() {
           />
           <img src={Icons.BottomVidioLine} className="bottomBgVidio" alt="" />
         </div>
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-between gap-4 mt-1">
-          <div className="w-full md:w-1/4">
+        <div className="flex flex-col md:flex-row items-center justify-start sm:justify-center  md:justify-between gap-4 mt-1">
+              <div className=" md:w-1/4">
             {adjacentIds.previousId && (
               <Link
                 to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`}
@@ -118,7 +118,7 @@ export default function Lesson() {
               </Link>
             )}
           </div>
-          <div className="w-full md:w-1/4">
+          <div className=" md:w-1/4">
             {!isGettingCourseProgress &&
               (lessonCompleted ? (
                 <div className="btn customBtnPrimary">
@@ -135,7 +135,7 @@ export default function Lesson() {
               ))}
           </div>
           {adjacentIds.nextId && (
-            <div className="w-full md:w-1/4 mb-2.5">
+            <div className=" md:w-1/4 mb-2.5">
               <Link
                 to={
                   lessonCompleted

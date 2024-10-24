@@ -49,7 +49,7 @@ const ImageGrid = ({ images }) => {
   }, [images]);
 
   return (
-    <div className="max-w-[1400px] mx-auto grid grid-cols-2 gap-4 p-4 md:grid-cols-3">
+    <div className="max-w-[1400px] mx-auto grid grid-cols-2 p-2 gap-2 md:grid-cols-3">
       {visibleImages.map((image, index) => (
         <ImageCard key={index} imagePath={image.path} text={image.text} />
       ))}

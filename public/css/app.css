@@ -261,7 +261,13 @@ section.section {
     font-semibold
     text-white
     px-4
-    py-2;
+    py-2
+}
+@media (max-width: 640px) { /* For small screens */
+  .customBtnPrimary {
+    @apply 
+    w-[200px]
+  }
 }
 
 /* box-tabs */

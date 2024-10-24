@@ -5,25 +5,11 @@ import { useApiService } from "../hooks/axios";
 import { Link, useParams } from "react-router-dom";
 import { Cookies } from "react-cookie";
 import { CourseAccessChecker } from "./access/CourseAccessChecker.jsx";
+import calculateCompletion from "../utils/calculatePercentage.js";
 
 const cookies = new Cookies();
 
-function calculateCompletion(currentValue, targetValue) {
-  if (
-    isNaN(currentValue) ||
-    isNaN(targetValue) ||
-    currentValue === null ||
-    targetValue === null
-  ) {
-    return "0";
-  }
-  if (targetValue === 0) {
-    return "0";
-  }
 
-  const percentage = (currentValue / targetValue) * 100;
-  return `${percentage.toFixed(2)}`;
-}
 
 const CoursePage = ({ courseName, firstLessonId, CouserTitle }) => {
   const apiService = useApiService();
