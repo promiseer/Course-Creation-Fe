@@ -86,7 +86,7 @@ const Courses = ({ courses }) => {
           key={index}
           onMouseEnter={() => !course.isLocked && setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          className={`md:w-[99.7%] w-[95%] md:mx-0 mx-auto transition-transform duration-300 ${hoveredIndex === index ? 'transform scale-100 shadow-lg border green ' : ''}`}
+          className={`md:w-[99.7%] w-[95%] md:mx-0 mx-auto transition-transform duration-300 ${hoveredIndex === index ? 'transform scale-100 shadow-lg border green ' : ''} `}
         >
           <Link to={`/courses/${course.id}`} key={course.id + index}>
             {hoveredIndex === index && !course.isLocked ? (
@@ -149,7 +149,7 @@ export default function CoursesPage() {
         image: value.thumbnail,
         description: value.description || "",
         isLocked: !hasAccess,
-        // progress: hasAccess ? value.progress || 0 : undefined,
+        progress: hasAccess ? value.progress || 0 : undefined,
       };
     }) || [];
 

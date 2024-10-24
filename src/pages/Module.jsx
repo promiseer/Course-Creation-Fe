@@ -49,6 +49,7 @@ export default function Module() {
       borderColor: index % 2 ? 'border-brown' : 'border-dark-blue',
     };
   });
+  const firstLessonId = `/courses/${courseId}/modules/${moduleId}/lesson/${moduleLessons?.[0]?.id}` 
 
   //console.log(moduleDetails);
 
@@ -58,7 +59,7 @@ export default function Module() {
         <div className="flex flex-col md:flex-row mt-[20px]">
           {/* Left Column: Course Page Content */}
           <div className="md:w-[60%] ml-[10px] md:ml-0 flex-grow">
-            <CoursePage courseName={decode(moduleDetails?.title?.rendered || "")}/>
+            <CoursePage courseName={decode(moduleDetails?.title?.rendered || "")} firstLessonId={firstLessonId} CouserTitle={"Go Ahead"}/>
           </div>
           {/* Mobile Tabs Section (Visible only on mobile) */}
           {/* <div className="md:hidden flex justify-center space-x-[10vw] my-4 mb-[30px]"> */}

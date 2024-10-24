@@ -203,8 +203,9 @@ section.section {
     text-center;
 }
 .section-welcome .text-welcome span {
-  @apply font-mognolia text-[40px] 
-    text-textPrimary;
+  @apply font-mognolia text-[20px] 
+    text-textPrimary 
+    sm:text-[40px];
 }
 .section-welcome .vidio-player {
   @apply w-full
@@ -242,7 +243,7 @@ section.section {
 
 @media (max-width: 640px) { /* For small screens */
   .section-welcome .vidio-player iframe {
-    @apply h-[200px]; /* Adjust height for mobile screens */
+    @apply h-[350px]; /* Adjust height for mobile screens */
   }
 }
 /* Components */

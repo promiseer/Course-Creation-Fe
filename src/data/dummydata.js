@@ -197,14 +197,14 @@ const myProfiles = [
     id: 3,
     childname: "",
     name: "COACHING",
-    link: '',
+    link: '/Courses',
     image: "../../public/images/mycourses/3.png",
   },
   {
     id: 4,
     childname: "",
     name: "CHALLENGE",
-    link: '',
+    link: '/Courses',
     image: "../../public/images/resources/1.png",
   },
   {
@@ -218,13 +218,14 @@ const myProfiles = [
     id: 6,
     childname: "Upcoming",
     name: "WORKSHOPS",
-    link: '',
+    link: '/Courses',
     image: "../../public/images/support/support.png",
   },
   {
     id: 7,
     childname: "Upcoming",
     name: "EVENTS",
+    link: '/Courses',
     image: "../../public/images/mycourses/1.png",
   },
 ];

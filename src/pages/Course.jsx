@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CourseDetails from '../components/CourseDetails.jsx'; // Left column component (video & course content)
+import CoursePage from '../components/CourseDetails.jsx'; // Left column component (video & course content)
 import Card from '../components/card.jsx'; // Right column component (module list)
 import { useQuery } from "@tanstack/react-query";
 import { useApiService } from "../hooks/axios";
@@ -50,6 +50,7 @@ export default function Course() {
       borderColor: index % 2 ? 'border-brown' : 'border-dark-blue',
     };
   });
+  const firstModuleId = `/courses/${courseId}/modules/${courseModules?.[0]?.id}` 
 
   //console.log("@@ courseDetails", courseDetails)
   return (
@@ -58,7 +59,7 @@ export default function Course() {
         <div className="flex flex-col md:flex-row mt-[20px]">
           {/* Left Column: Course Page Content */}
           <div className="md:w-[60%] ml-[10px] md:ml-0 flex-grow">
-            <CourseDetails courseName={decode(courseDetails?.title?.rendered || "")}/>
+            <CoursePage courseName={decode(courseDetails?.title?.rendered || "")} firstLessonId={firstModuleId} CouserTitle={"Start Course"} />
           </div>
           {/* Mobile Tabs Section (Visible only on mobile) */}
           {/* <div className="md:hidden flex justify-center space-x-[10vw] my-4 mb-[30px]"> */}
