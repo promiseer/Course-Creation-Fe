@@ -1,19 +1,38 @@
 import { useState } from "react";
 import Icons from "../../public/index.js";
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
-import { sign_up } from '../redux/actions/authActions';
+import { useDispatch } from "react-redux";
+import { sign_up } from "../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp() {
-  
+  const navigate = useNavigate(); 
   const [isPassword, setisPassword] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
-  const handleSignup = handleSubmit((values) => {
-    dispatch(sign_up({ username: values.username, email:values.email, password:values.email }));
-  });
 
+  const handleSignup = handleSubmit(async (values) => {
+    try {
+      await dispatch(
+        sign_up(
+          {
+            username: values.username,
+            firstName: values.username,
+            lastName: values.username,
+            email: values.email,
+            password: values.password,
+          },
+          navigate,
+          toast
+        )
+      );
+    } catch (error) {
+      toast.error("Error creating account. Please try again.");
+    }
+  });
 
   return (
     <div className="signin-page">
@@ -22,15 +41,17 @@ function SignUp() {
           <img src={Icons.brandLogo} alt="logo" />
           <h2>Sign Up</h2>
         </div>
+        <ToastContainer position="top-right" autoClose={3000} />
+
         <div className="signin-form">
           <form onSubmit={handleSignup}>
-          <div className="form-group">
+            <div className="form-group">
               <div className="input-inline">
                 <input
                   type="text"
                   className="form-control"
                   id="username"
-                  placeholder="User Name"
+                  placeholder="Full Name"
                   autoComplete="off"
                   {...register("username", {
                     required: {
@@ -42,8 +63,12 @@ function SignUp() {
                 <span className="input-icons">
                   <i className="bi bi-person-circle"></i>
                 </span>
+                {errors.username && (
+                  <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>
+                )}
               </div>
             </div>
+            
             <div className="form-group">
               <div className="input-inline">
                 <input
@@ -62,8 +87,12 @@ function SignUp() {
                 <span className="input-icons">
                   <i className="bi bi-person-circle"></i>
                 </span>
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                )}
               </div>
             </div>
+            
             <div className="form-group">
               <div className="input-inline">
                 <input
@@ -87,18 +116,28 @@ function SignUp() {
                     className={isPassword ? "bi bi-eye-slash" : "bi bi-eye"}
                   ></i>
                 </span>
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                )}
               </div>
             </div>
-            {/* Add loading state here when loggin in */}
+
             <button type="submit" className="btn btn-signin !max-w-[100%]">
               Create Account
             </button>
-            <a href="#" className="forgot-password">
-              Forgot Password?
-            </a>
+            
+            <div className="">
+              <a href="/login" className="forgot-password mx-2">
+                Login
+              </a>
+              <a href="#" className="forgot-password  mx-2">
+                Forgot Password?
+              </a>
+            </div>
           </form>
         </div>
       </div>
+      
       <div className="signin-images">
         <img src={Icons.loginImage} alt="login" />
       </div>

@@ -21,10 +21,13 @@ export default function Lesson() {
     useQuery({
       queryKey: ["course-progress", { courseId, userId: parsedUserCookie?.id }], // Use object for clarity
       queryFn: () =>
-        apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
+        apiService.get(
+          `/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`
+        ),
     });
 
-  const lessonCompleted = courseProgressResponse?.data.topics[moduleId]?.[lessonId]; // Added optional chaining
+  const lessonCompleted =
+    courseProgressResponse?.data.topics[moduleId]?.[lessonId]; // Added optional chaining
 
   const { data: lessonDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
@@ -33,6 +36,7 @@ export default function Lesson() {
     });
 
   const lessonDetails = lessonDetailsResponse?.data;
+  console.log(lessonDetails)
 
   const { data: moduleLessonsResponse, isLoading: isGettingCourseModules } =
     useQuery({
@@ -87,10 +91,28 @@ export default function Lesson() {
   const adjacentIds = moduleLessonsResponse?.data
     ? findAdjacentIds(moduleLessonsResponse.data, lessonId)
     : {};
-
+  const courseDetails = undefined;
+  const moduleDetails = undefined;
   return (
     <section className="section section-welcome px-[1vw] sm:px-[1vw]">
       <div className="col-span-12 md:col-span-12 flex flex-col px-[1vw] sm:px-[1vw] md:px-[15vw]">
+        {/* Breadcrumb Section */}
+        <div className="breadcrumb flex font-mognolia text-sm  text-textPrimary mb-2 whitespace-nowrap overflow-hidden text-ellipsis">
+          <Link
+            to={`/courses/${courseId}`}
+            className="hover:underline truncate"
+          >
+            {courseDetails?.name || "Course Name"}
+          </Link>
+          <span>/</span>
+          <Link
+            to={`/courses/${courseId}/modules/${moduleId}`}
+            className="hover:underline truncate"
+          >
+            {moduleDetails?.name || "Module Name"}
+          </Link>
+          <span>/</span>
+        </div>
         <div className="text-welcome">
           <span>{decode(lessonDetails?.title?.rendered || "")}</span>
         </div>
@@ -107,7 +129,7 @@ export default function Lesson() {
           <img src={Icons.BottomVidioLine} className="bottomBgVidio" alt="" />
         </div>
         <div className="flex flex-col md:flex-row items-center justify-start sm:justify-center  md:justify-between gap-4 mt-1">
-              <div className=" md:w-1/4">
+          <div className=" md:w-1/4">
             {adjacentIds.previousId && (
               <Link
                 to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`}

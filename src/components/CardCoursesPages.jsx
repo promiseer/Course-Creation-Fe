@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
-import Icons from "../../public";
-import iconImage from "../../public/images/icons/layericons.png";
-import iconLock from "../../public/images/icons/lockicons.svg";
+import { iconLock, iconImage } from "../assets";
 
 function CardCoursesPages({
   key,
@@ -11,7 +9,7 @@ function CardCoursesPages({
   views,
   description,
   boxCaptionsClass,
-  progress
+  progress,
 }) {
   return (
     <div key={key ? key : null} className="box">
@@ -59,11 +57,7 @@ function CardCoursesPages({
 
         {status == "Locked" ? (
           <span className="status px-[16px] py-[39px] flex items-center justify-end">
-            <img
-              src={iconLock}
-              alt=""
-              className="w-14 h-14"
-            />
+            <img src={iconLock} alt="" className="w-14 h-14" />
           </span>
         ) : null}
       </div>

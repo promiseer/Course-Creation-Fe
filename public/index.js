@@ -8,6 +8,8 @@ const Icons = {
     resources1: './images/resources/1.png',
     resources2: './images/resources/2.png',
     suportimage: './images/support/support.png',
+    iconImage:'./images/icons/layericons.png',
+    iconLock:'./images/icons/lockicons.svg',
 };
 
 export default Icons;

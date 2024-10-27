@@ -12,7 +12,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/wp-json': {
-        target: 'https://wordpress-1273862-4898429.cloudwaysapps.com',
+        target: 'https://wordpress-1273862-4929101.cloudwaysapps.com/',
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api": {
+        target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
       },

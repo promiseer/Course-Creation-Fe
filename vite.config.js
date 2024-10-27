@@ -26,7 +26,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/wp-json': {
-        target: 'http://stephare-react.local',
+        target: 'https://wordpress-1273862-4929101.cloudwaysapps.com/',
         changeOrigin: true,
         secure: false,
       },

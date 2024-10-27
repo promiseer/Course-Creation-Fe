@@ -34,7 +34,7 @@ export default function Courses() {
   // Fetch course list
   const { data: courseListResponse, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: () => apiService.get("/cct/v1/courses"),
+    queryFn: () => apiService.get("/cct/v1/courses/"),
   });
 
   // Fetch course access list for the user
@@ -55,7 +55,7 @@ export default function Courses() {
       return {
         id: value.id,
         childLabel: "MODULE 1.3",
-        label: decode(value.title),
+        label: decode(value?.title|| ""),
         time: "1 Hour 24 Minutes",
         views: 8,
         image: value.thumbnail,

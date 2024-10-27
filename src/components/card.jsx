@@ -34,9 +34,8 @@ const Card = ({
   // Fetching course data using useQuery
   const { data: courseListResponse, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: () => apiService.get("/cct/v1/courses"),
+    queryFn: () => apiService.get("/ldlms/v1/sfwd-courses"),
     onSuccess: (data) => {
-      console.log("Course List Response:", data);
     }
   });
 
@@ -56,7 +55,7 @@ const Card = ({
 
       return {
         id: value.id,
-        label: decode(value.title),
+        label: decode(value?.title?.rendered||""),
         image: value.thumbnail,
         description: value.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         isComplete: hasAccess,

@@ -38,7 +38,9 @@ const FirstCourseCard = ({ image, title, description, progress }) => (
             </p>
             <div className="flex items-center space-x-2">
               <img src={hat} alt="Hat icon" className="w-6 h-6" />
-              <p className="text-sm font-bold text-white">{progress?.steps_total}</p>
+              <p className="text-sm font-bold text-white">
+                {progress?.steps_total}
+              </p>
             </div>
           </div>
           <div className="w-full border border-white bg-[#274C6999] h-[9px]">
@@ -64,12 +66,11 @@ const CourseCard = ({ image, title, description, progress, isLocked }) => (
       {title}
     </h3>
     {/* Show checkmark only if progress is 100% */}
-    {progress?.status ==="completed" &&
-    (
-        <div className="absolute top-4 right-4 z-10">
-          <img src={checkmark} alt="Checkmark" className="w-10 h-10" />
-        </div>
-      )}
+    {progress?.status === "completed" && (
+      <div className="absolute top-4 right-4 z-10">
+        <img src={checkmark} alt="Checkmark" className="w-10 h-10" />
+      </div>
+    )}
     {isLocked && (
       <div className="absolute bottom-4 right-4 z-10">
         <img src={lock} alt="Locked" className="w-[56px] h-[56px]" />
@@ -114,25 +115,27 @@ const Courses = ({ courses }) => {
               : ""
           }`}
         >
-          <Link to={`/courses/${course.id}`} key={course.id + index}>
-            {hoveredIndex === index && !course.isLocked ? (
+          <Link to={course.isLocked?`/checkout?courseId=${course.id}`:`/courses/${course.id}`} key={course.id + index}>
+          {hoveredIndex === index && !course.isLocked ? (
               <FirstCourseCard
                 image={course.image || c2}
-                title={course.label}
+                title={course?.label}
                 description={
                   course.description ||
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 }
+                price={course?.price || 0}
                 progress={course.progress}
               />
             ) : (
               <CourseCard
                 image={course.image || c2}
-                title={course.label || "Course"}
+                title={course?.label || "Course"}
                 description={
                   course.description ||
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 }
+                price={course?.price || 0}
                 progress={course.progress}
                 isLocked={course.isLocked}
               />
@@ -151,7 +154,7 @@ export default function CoursesPage() {
 
   const { data: courseListResponse, isLoadingCourses } = useQuery({
     queryKey: ["courses"],
-    queryFn: () => apiService.get("/cct/v1/courses"),
+    queryFn: () => apiService.get("/cct/v1/courses/"),
   });
 
   const { data: courseProgressResponse, isLoading: isLoadingProgress } =
@@ -174,7 +177,7 @@ export default function CoursesPage() {
 
   const isLoading = isLoadingCourses || isLoadingProgress || isLoadingAccess;
 
-  const getCourseProgress = (courseId) => {    
+  const getCourseProgress = (courseId) => {
     const progressData = courseProgressResponse?.data?.find(
       (progress) => progress.course === courseId
     );
@@ -183,7 +186,7 @@ export default function CoursesPage() {
       ? {
           status: progressData?.progress_status,
           steps_completed: progressData?.steps_completed,
-          steps_total:progressData?.steps_total,
+          steps_total: progressData?.steps_total,
           last_step: progressData?.last_step,
           progressPercent: calculateCompletion(
             progressData?.steps_completed,
@@ -202,13 +205,14 @@ export default function CoursesPage() {
 
   const courseList =
     courseListResponse?.data?.map((course) => {
-      const courseHasAccess = hasAccess(course.id);      
+      const courseHasAccess = hasAccess(course.id);
       return {
         id: course.id,
-        label: decode(course.title),
+        label: decode(course?.title || ""),
         image: course.thumbnail,
         description: course.description || "",
         isLocked: !courseHasAccess,
+        price: course?.price?.price,
         progress: courseHasAccess ? getCourseProgress(course.id) : undefined,
       };
     }) || [];
