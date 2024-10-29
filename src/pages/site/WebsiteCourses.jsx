@@ -164,7 +164,7 @@ function WebsiteCourses() {
       <Header />
       {/* Courses Intro Section */}
       <div className="coursesbg text-center py-24">
-        <div className="cContainer md:w-[70%] mx-auto">
+        <div className="container md:w-[70%] mx-auto">
           <h3 className="text-[#376489] font-extrabold md:text-[60px] text-[30px] mb-4">
             COURSES
           </h3>
@@ -185,7 +185,7 @@ function WebsiteCourses() {
           className={` ${index % 2 === 0 ? "c_2" : "bg-[#F1E1E4] c_1"}`}
         >
           <div
-            className={`cContainer flex ${
+            className={`container flex ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             } items-center justify-end md:py-24 py-10 md:flex-nowrap flex-wrap-reverse relative`}
           >

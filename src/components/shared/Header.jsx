@@ -19,9 +19,8 @@ function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between p-3 m-3 gap-[80px] cContainer text-[#274C69] font-bold h-[8.57vw] ">
-    
-      <nav className="hidden md:flex md:justify-between space-x-4  w-full">
+    <header className="flex items-center justify-between p-2 container text-[#274C69] font-bold">
+      <nav className="hidden md:flex md:justify-between space-x-4 w-full">
         {navItems.slice(0, 3).map((item) => (
           <Link
             key={item.id}

@@ -47,8 +47,23 @@ import iconImage from "../assets/icons/layericons.png";
 import iconLock from "../assets/icons/lockicons.svg";
 import stephhome from "../assets/steph.png";
 import stephMob from "../assets/stephMob.png";
-
+import canHelpYouHomePageBG from './can-help-you.jpg'
+import howItWorkBgHomePage from './how-it-works-bg.jpg'
+import howitworksbrainicon  from './icons/how-it-works-brain.svg'
+import howitworkszoomicon from './icons/howitworkszoomicon.svg'
+import howitworkslighticon from './icons/howitworkslighticon.svg'
+import howitworksDonorIcon from './icons/howitworksDonorIcon.svg'
+import previewBlogHomePage from './home/previewBlogHomePage.svg'
+import homePageHi_ImStephanie from './home/Hi-I-m-Stephanie.svg'
 export {
+  homePageHi_ImStephanie,
+  previewBlogHomePage,
+  howitworksDonorIcon,
+  howitworkslighticon,
+  howitworkszoomicon,
+  howitworksbrainicon,
+  howItWorkBgHomePage,
+  canHelpYouHomePageBG,
   imgOne,
   imgTwo,
   imgThree,

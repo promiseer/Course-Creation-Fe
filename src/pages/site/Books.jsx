@@ -47,7 +47,7 @@ function Books() {
           <img src={bookslandimg1} alt="" className=" mb-5 !w-[30%]  " />
         </div>
         <div className="c_1 ">
-          <div className="cContainer flex items-center justify-end md:py-24 py-10 md:flex-nowrap flex-wrap-reverse relative">
+          <div className="container flex items-center justify-end md:py-24 py-10 md:flex-nowrap flex-wrap-reverse relative">
             <div className="md:w-[55%] w-[90%] mx-auto md:absolute z-50 bg-[#faf5f0c2] p-7 md:px-20 left-[3%] md:-translate-y-0 -translate-y-24">
               <h3 className="text-[#C1989F] font-extrabold font-montserrat md:text-[40px] text-[28px]  relative z-10">
                 From <span className="text-[#376489]">Chaos</span> to
@@ -94,7 +94,7 @@ function Books() {
           </div>
         </div>
         <div className="c_2 bg-[#F1E1E4]">
-          <div className="cContainer flex items-center justify-start md:py-28 md:pt-28 pt-5 md:flex-nowrap flex-wrap-reverse relative">
+          <div className="container flex items-center justify-start md:py-28 md:pt-28 pt-5 md:flex-nowrap flex-wrap-reverse relative">
             <div className="md:w-[55%] w-[90%] mx-auto md:absolute z-50 bg-[#faf5f0c2] p-7 md:px-20 right-[3%] md:-translate-y-0 -translate-y-20">
               {/* <div className="md:w-[55%] absolute z-50 bg-[#faf5f0c2] p-7 px-16 right-[5%]"> */}
               <h3 className="text-[#C1989F] font-extrabold font-montserrat md:text-[40px] text-[28px]  relative z-10">
@@ -170,7 +170,7 @@ function Books() {
             </div>
           </div>
         </div>
-        <div className="cContainer booklastsec relative flex items-end py-24 my-40">
+        <div className="container booklastsec relative flex items-end py-24 my-40">
           <div className="w-[55%] ml-auto">
             <h3 className="text-[#376489] font-extrabold font-montserrat md:text-[40px] text-[28px]  relative z-10">
             ORDER YOUR COPY TODAY

@@ -87,7 +87,7 @@ const Blogs = () => {
     <>
       <Header/>
       <div className="coursesbg text-center py-24">
-        <div className="cContainer md:w-[70%] mx-auto">
+        <div className="container md:w-[70%] mx-auto">
           <h3 className="text-[#376489] font-extrabold md:text-[60px] text-[30px] mb-4">
             BLOGS
           </h3>

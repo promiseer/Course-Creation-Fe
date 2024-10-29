@@ -6,7 +6,7 @@ import Icons from "../Icons";
 function Footer() {
   return (
     <section className="">
-      <section className="flex md:flex-row py-20 flex-col items-start justify-between gap-7 md:flex-nowrap flex-wrap cContainer">
+      <section className="flex md:flex-row py-20 flex-col items-start justify-between gap-7 md:flex-nowrap flex-wrap container">
         <div className="md:basis-[25%]">
           <img
             src={Icons.BrandLogo}
