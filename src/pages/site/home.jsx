@@ -10,13 +10,15 @@ import {
   maskLogoFive,
   maskLogoFour,
   maskLogoOne,
-  maskLogoThree,    
+  maskLogoThree,
   maskLogoTwo,
   offereingOne,
   offereingThree,
   offereingTwo,
   secHomeImg,
   stephImg,
+  stephhome,
+  stephMob,
 } from "../../assets";
 import Header from "../../components/shared/Header";
 import Footer from "../../components/shared/Footer";
@@ -26,27 +28,61 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="landing flex md:items-center items-start md:py-0 py-12 justify-start">
-        <div className="text-white cContainer text-center flex flex-col justify-center items-center  gap-3 md:w-[60%]">
-          <h4 className="font-mognolia md:text-[30px] text-[30px]">
-          The future is emotionally intelligent.
-          </h4>
-          <h1 className="font-montserrat uppercase md:text-[45px] text-[30px] font-black md:leading-[60px] leading-[50px]">
-            Emotional Intelligence Speaker & Author
-          </h1>
-          <button className="uppercase bg-[#F1E1E4] font-semibold rounded-full md:w-[250px] w-[200px] h-[45px] text-[#274C69] md:mt-5 mt-2">
-            learn more
-          </button>
-        </div>
-      </div>
+{/* Mobile Background */}
+<div className="landing flex md:hidden bg-cover bg-center bg-no-repeat items-start py-12 justify-start" style={{ backgroundImage: `url(${stephMob})` }}>
+  <div className="text-white cContainer text-center flex flex-col justify-center items-center gap-3 w-[90%] bg-opacity-70">
+    <h4 className="font-mognolia text-[20px] leading-[28px]">
+      The future is emotionally intelligent.
+    </h4>
+    <h1 className="font-montserrat uppercase text-[24px] font-black leading-[40px]">
+      Emotional Intelligence Speaker & Author
+    </h1>
+    <button className="uppercase bg-[#F1E1E4] font-semibold rounded-full w-[180px] h-[45px] text-[#274C69] mt-2">
+      learn more
+    </button>
+  </div>
+</div>
+
+{/* Desktop Background */}
+<div className="landing hidden md:flex bg-cover bg-center bg-no-repeat items-center justify-start" style={{ backgroundImage: `url(${stephhome})` }}>
+  <div className="text-white cContainer text-center flex flex-col justify-center items-center gap-3 md:w-[60%] bg-opacity-70">
+    <h4 className="font-mognolia text-[30px]">
+      The future is emotionally intelligent.
+    </h4>
+    <h1 className="font-montserrat uppercase text-[45px] font-black leading-[60px]">
+      Emotional Intelligence Speaker & Author
+    </h1>
+    <button className="uppercase bg-[#F1E1E4] font-semibold rounded-full w-[250px] h-[45px] text-[#274C69] mt-5">
+      learn more
+    </button>
+  </div>
+</div>
+     
+
       <div className="flex md:flex-row flex-col items-center justify-between cContainer py-20 md:pb-20 pb-0 md:gap-20 gap-6">
         <div className="md:basis-[55%]">
           <h1 className="font-brittany md:text-[60px] text-[40px] font-normal text-newprimary">
             Hi, I m <span className="text-textPrimary">Stephanie</span>
           </h1>
           <p className="text-[#274C69] text-lg font-medium leading-[24.1px] font-montserrat mt-5">
-          I’m passionate about helping both families and professionals unlock the power of emotional intelligence to create deeper connections and thriving environments. I started my journey by founding my emotionally intelligent parenting community and offering coaching, where I focused on guiding parents to raise emotionally resilient, confident, and kind kids. Through my workshops, courses, and podcast, I continue to teach families how to foster empathy, collaboration, and problem-solving, all while embracing an emotionally intelligent, (and punishment-free) approach to parenting. <br /> <br />
-          As my work evolved, I expanded into the professional and corporate space, showing how emotional intelligence can transform teams, strengthen leadership, and improve collaboration. Now, I work with both families and professionals, delivering keynotes, running corporate training sessions, and consulting with leaders. My work in this space helps people to understand and manage emotions for stronger, healthier relationships - whether at home or in the workplace.
+            I’m passionate about helping both families and professionals unlock
+            the power of emotional intelligence to create deeper connections and
+            thriving environments. I started my journey by founding my
+            emotionally intelligent parenting community and offering coaching,
+            where I focused on guiding parents to raise emotionally resilient,
+            confident, and kind kids. Through my workshops, courses, and
+            podcast, I continue to teach families how to foster empathy,
+            collaboration, and problem-solving, all while embracing an
+            emotionally intelligent, (and punishment-free) approach to
+            parenting. <br /> <br />
+            As my work evolved, I expanded into the professional and corporate
+            space, showing how emotional intelligence can transform teams,
+            strengthen leadership, and improve collaboration. Now, I work with
+            both families and professionals, delivering keynotes, running
+            corporate training sessions, and consulting with leaders. My work in
+            this space helps people to understand and manage emotions for
+            stronger, healthier relationships - whether at home or in the
+            workplace.
             <br />
             <br />
           </p>
@@ -62,18 +98,30 @@ function Home() {
         <div className="md:basis-[58%]">
           <h1 className="font-montserrat text-[48px] font-[800] text-newprimary">
             <span className="font-mognolia font-normal">Why </span>
-            <span className="text-textPrimary">Emotional </span>{" "}
-          Intelligence?
-
+            <span className="text-textPrimary">Emotional </span> Intelligence?
           </h1>
           <p className="text-[#274C69] text-lg font-medium leading-[24.1px] font-montserrat mt-5">
-          Emotional Intelligence has never been more important than it is right now. 
- <br /> <br />
- Whether you're a parent or a professional, being able to understand and manage emotions is key to navigating the challenges we all face today. With so much uncertainty - whether it’s economic shifts or the lasting impact of the pandemic - resilience is a must. Emotional Intelligence gives us the tools to stay calm, adapt, and bounce back when life throws us curveballs.
+            Emotional Intelligence has never been more important than it is
+            right now.
+            <br /> <br />
+            Whether you're a parent or a professional, being able to understand
+            and manage emotions is key to navigating the challenges we all face
+            today. With so much uncertainty - whether it’s economic shifts or
+            the lasting impact of the pandemic - resilience is a must. Emotional
+            Intelligence gives us the tools to stay calm, adapt, and bounce back
+            when life throws us curveballs.
             <br />
-            <br /> We’re also seeing a real disconnect in empathy and connection. People are feeling more distant from each other, and it’s taking a toll on our relationships, both at home and at work. Emotional Intelligence helps us close that gap by building empathy, understanding, and stronger bonds. 
-<br/>
-<br/>For parents, it means raising kids who are confident and emotionally strong. For professionals, it means fostering teamwork and leading with compassion. Simply put, emotional intelligence helps us all thrive, no matter what life throws our way.
+            <br /> We’re also seeing a real disconnect in empathy and
+            connection. People are feeling more distant from each other, and
+            it’s taking a toll on our relationships, both at home and at work.
+            Emotional Intelligence helps us close that gap by building empathy,
+            understanding, and stronger bonds.
+            <br />
+            <br />
+            For parents, it means raising kids who are confident and emotionally
+            strong. For professionals, it means fostering teamwork and leading
+            with compassion. Simply put, emotional intelligence helps us all
+            thrive, no matter what life throws our way.
           </p>
         </div>
       </div>
@@ -208,17 +256,27 @@ function Home() {
             <span className="font-normal font-mognolia">You</span>
           </h3>
           <p className="text-[#274C69] font-semibold text-lg mb-3">
-          If you’re a leader looking to build a more emotionally intelligent, resilient team, or a parent eager to raise emotionally strong, connected kids, I’m here to support you. After all, the workplace is a lot like a family; both are teams that rely on relationships, trust, and collaboration, where good communication and emotional support create joy and connection among everyone involved.
+            If you’re a leader looking to build a more emotionally intelligent,
+            resilient team, or a parent eager to raise emotionally strong,
+            connected kids, I’m here to support you. After all, the workplace is
+            a lot like a family; both are teams that rely on relationships,
+            trust, and collaboration, where good communication and emotional
+            support create joy and connection among everyone involved.
           </p>
           <p className="text-[#274C69] font-semibold text-lgm mb-4">
-          For professionals, I offer consulting, insightful keynotes, and tailored presentations designed to inspire and equip your team with practical tools for navigating today’s challenges.
-
+            For professionals, I offer consulting, insightful keynotes, and
+            tailored presentations designed to inspire and equip your team with
+            practical tools for navigating today’s challenges.
           </p>
           {/* <h3 className="font-normal font-mognolia text-[48px] text-[#274C69] mb-4">
           For parents{" "}
           </h3> */}
           <p className="text-[#274C69] font-semibold text-lg ">
-          For parents,I provide online courses, a welcoming Facebook community, and my Emotionally Intelligent Parenting podcast. Through these resources, I’ll guide you in creating deeper connections and fostering emotional intelligence - whether in the workplace or at home.
+            For parents,I provide online courses, a welcoming Facebook
+            community, and my Emotionally Intelligent Parenting podcast. Through
+            these resources, I’ll guide you in creating deeper connections and
+            fostering emotional intelligence - whether in the workplace or at
+            home.
           </p>
           <button className="uppercase bg-[#376489] px-12 text-[17px] font-semibold rounded-full h-[45px] text-[#F1E1E4] mt-5">
             Book Free Consult
@@ -234,13 +292,16 @@ function Home() {
           <div className="relative w-full md:basis-[calc(100%/3-30px)]">
             <div className="relative">
               <div className="absolute left-[50%] -translate-x-[50%] -top-10 w-[75%] leading-[31.69px]   h-[90px] bg-[#c2d5e4d3] text-[#274C69] font-bold font-montserrat uppercase text-[22px] px-5 text-center flex items-center justify-center">
-              Keynotes and Presentations
+                Keynotes and Presentations
               </div>
             </div>
             <img src={offereingOne} alt="" />
             <div className="px-4 py-4 bg-[#C2D5E4] w-[90%] mx-auto">
               <p className="text-[#274C69] font-medium text-base leading-[23px]  font-montserrat">
-              My keynotes and presentations on emotional intelligence empower audiences with engaging insights and practical tools. I aim to spark meaningful conversations and deepen understanding, whether I'm speaking to parents, educators, or corporate teams.
+                My keynotes and presentations on emotional intelligence empower
+                audiences with engaging insights and practical tools. I aim to
+                spark meaningful conversations and deepen understanding, whether
+                I'm speaking to parents, educators, or corporate teams.
               </p>
               <button className="uppercase bg-[#376489] px-10 text-[16px] w-[80%] h-[40px] font-semibold rounded-full text-[#F1E1E4] mt-3">
                 Read more
@@ -250,13 +311,16 @@ function Home() {
           <div className="relative w-full md:basis-[calc(100%/3-30px)]">
             <div className="relative">
               <div className="absolute left-[50%] -translate-x-[50%] -top-10 w-[75%] leading-[31.69px]   h-[90px] bg-[#f1e1e4ce] text-[#C1989F] font-bold font-montserrat text-[22px] px-1 uppercase text-center flex items-center justify-center">
-              Training and Workshops
+                Training and Workshops
               </div>
             </div>
             <img src={offereingThree} alt="" />
             <div className="px-4 py-4 bg-[#F1E1E4] w-[90%] mx-auto">
               <p className="text-[#274C69] font-medium text-base leading-[23px]  font-montserrat">
-              My training sessions and workshops on emotional intelligence are interactive and tailored to meet the needs of your group. Participants gain practical skills and strategies that foster connection, teamwork and resilience.
+                My training sessions and workshops on emotional intelligence are
+                interactive and tailored to meet the needs of your group.
+                Participants gain practical skills and strategies that foster
+                connection, teamwork and resilience.
               </p>
               <button className="uppercase bg-[#C1989F] px-10 text-[16px] w-[80%] h-[40px] font-semibold rounded-full text-[#F1E1E4] mt-3">
                 Read more
@@ -266,12 +330,18 @@ function Home() {
           <div className="relative w-full md:basis-[calc(100%/3-30px)]">
             <div className="relative">
               <div className="absolute left-[50%] -translate-x-[50%] -top-10 w-[75%] leading-[31.69px]   h-[90px] bg-[#c2d5e4d3] text-[#274C69] font-bold font-montserrat text-[22px] px-20 text-center flex items-center justify-center">
-              Online Courses              </div>
+                Online Courses{" "}
+              </div>
             </div>
             <img src={offereingTwo} alt="" />
             <div className="px-4 py-4 bg-[#C2D5E4] w-[90%] mx-auto">
               <p className="text-[#274C69] font-medium text-base leading-[23px]  font-montserrat">
-              Designed for both parents and professionals, my online courses provide practical strategies and insights to deepen emotional awareness and create supportive environments. They cover a range of emotional intelligence topics, from managing triggers to understanding kids' behaviour and fostering teamwork in corporate settings.
+                Designed for both parents and professionals, my online courses
+                provide practical strategies and insights to deepen emotional
+                awareness and create supportive environments. They cover a range
+                of emotional intelligence topics, from managing triggers to
+                understanding kids' behaviour and fostering teamwork in
+                corporate settings.
               </p>
               <button className="uppercase bg-[#376489] px-10 text-[16px] w-[80%] h-[40px] font-semibold rounded-full text-[#F1E1E4] mt-3">
                 Read more
@@ -283,10 +353,9 @@ function Home() {
 
       {/* how it will work  */}
       <div className="howitwork flex items-center justify-center">
-         <div className="py-6 cContainer text-center w-full">
+        <div className="py-6 cContainer text-center w-full">
           <h3 className="text-[#FAF5F0] text-[48px] font-extrabold font-montserrat mb-16">
-          “The future is emotionally intelligent. Let it start with you.”
-
+            “The future is emotionally intelligent. Let it start with you.”
           </h3>
           <div className="">
             {/* <div className="w-fit flex flex-col items-center justify-center gap-4 md:basis-[calc(100%/4-50px)] basis-[calc(100%/2-30px)]">
@@ -366,7 +435,7 @@ function Home() {
               </div>
             </div> */}
           </div>
-        </div> 
+        </div>
       </div>
       {/* latest blog  */}
       <div className="py-20">

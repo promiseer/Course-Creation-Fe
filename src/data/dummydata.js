@@ -197,7 +197,7 @@ const myProfiles = [
     id: 3,
     childname: "",
     name: "COACHING",
-    link: '/Courses',
+    link: '/coaching',
     image: "../../public/images/mycourses/3.png",
   },
   {

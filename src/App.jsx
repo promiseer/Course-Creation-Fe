@@ -63,12 +63,13 @@ function App() {
 function Layout() {
   const location = useLocation();
   const noNavbarRoutes = [
+    "/",
     "/login",
     "/signup",
     "/checkout",
     "/success",
     "/home",
-    "/sitecourses",
+    "/courses-info",
     "/blogs",
     "/blogdetails",
     "/books",
@@ -85,9 +86,9 @@ function Layout() {
       {/* Render Navbar if not on signin */}
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/sitecourses" element={<SiteCourses />} />
+        <Route path="/" index element={<Home />} />
+        <Route path="/home" index element={<Navigate to="/" />} />
+        <Route path="/courses-info" element={<SiteCourses />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogdetails" element={<Blogsdetails />} />
         <Route path="/books" element={<Books />} />
@@ -124,11 +125,9 @@ function Layout() {
           }
         />
         <Route
-          path="/course-upsale"
+          path="/upsale"
           element={
-            <ProtectedRoute>
               <CourseUpsale />
-            </ProtectedRoute>
           }
         />
         <Route
@@ -216,7 +215,7 @@ function Layout() {
           }
         />
 
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/" />} />
 
         {/* <Route path="/logout" element={<Logout />} /> */}
       </Routes>

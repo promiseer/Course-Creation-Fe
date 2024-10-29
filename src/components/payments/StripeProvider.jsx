@@ -6,12 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useApiService } from "../../hooks/axios";
 import { useLocation } from "react-router-dom";
 import { Cookies } from "react-cookie";
-
 export const CourseContext = createContext();
 const cookies = new Cookies();
 
-const stripePromise = loadStripe(import.meta.env.STRIPE_PUBLISHABLE_KEY
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export default function StripeProvider({ children }) {
   const location = useLocation();

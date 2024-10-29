@@ -17,7 +17,8 @@ import tiktok from '../assets/social/tiktok.svg';
 import twitter from '../assets/social/twitter.svg'; 
 import youtube from '../assets/social/youtube.svg'; 
 import subscribeSteph from "../assets/subscrilebsteph.svg";
-
+import fullstar from "../assets/star/fullstar.svg"
+import emptystar from "../assets/star/emptystar.svg"
 const Icons = {
   BrandLogo,
   userIcon,
@@ -37,7 +38,9 @@ const Icons = {
   tiktok,
   twitter,
   youtube,
-  subscribeSteph
+  subscribeSteph,
+  fullstar,
+  emptystar
 };
 
 export default Icons;

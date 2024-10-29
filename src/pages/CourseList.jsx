@@ -15,7 +15,7 @@ import calculateCompletion from "../utils/calculatePercentage";
 const cookies = new Cookies();
 
 const FirstCourseCard = ({ image, title, description, progress }) => (
-  <div className="relative w-full h-[390px] md:h-[550px] flex flex-col overflow-hidden transition-transform duration-300">
+  <div className="relative w-full h-[390px] md:h-[550px] flex flex-col overflow-hidden transition-transform duration-300 text-center ">
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{ backgroundImage: `url(${image})` }}
@@ -26,7 +26,7 @@ const FirstCourseCard = ({ image, title, description, progress }) => (
         {title}
       </h2>
     </div>
-    <div className="relative mt-auto bg-[#274C6999] md:h-[200px] h-[170px] md:pl-[40px] p-6 text-white flex flex-col justify-between">
+    <div className="relative mt-auto bg-[#274C6999] md:h-[200px] h-[170px] md:pl-[40px] p-6 text-white flex flex-col justify-between px-2">
       <p className="font-montserrat font-extrabold md:text-[19px] text-[14px] md:leading-[28.72px] leading-[17.68px] mb-4">
         {description}
       </p>
@@ -56,7 +56,7 @@ const FirstCourseCard = ({ image, title, description, progress }) => (
 );
 
 const CourseCard = ({ image, title, description, progress, isLocked }) => (
-  <div className="relative w-full h-[390px] md:h-[550px] bg-[#274C6999] overflow-hidden transition-transform duration-300">
+  <div className="relative w-full h-[390px] md:h-[550px] bg-[#274C6999] overflow-hidden transition-transform duration-300 text-center">
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{ backgroundImage: `url(${image})` }}
@@ -101,7 +101,7 @@ const Courses = ({ courses }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 w-full mt-[10px] md:px-0">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-y-1 w-full mt-[10px] md:px-0">
       {courses.map((course, index) => (
         <div
           key={index}
@@ -115,7 +115,7 @@ const Courses = ({ courses }) => {
               : ""
           }`}
         >
-          <Link to={course.isLocked?`/checkout?courseId=${course.id}`:`/courses/${course.id}`} key={course.id + index}>
+          <Link to={course.isLocked?`/upsale?courseId=${course.id}`:`/courses/${course.id}`} key={course.id + index}>
           {hoveredIndex === index && !course.isLocked ? (
               <FirstCourseCard
                 image={course.image || c2}

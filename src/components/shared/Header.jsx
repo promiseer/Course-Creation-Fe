@@ -8,7 +8,7 @@ const navItems = [
   { id: 3, title: "RESOURCES", path: "/resources" },
   { id: 4, title: "BOOK", path: "/books" },
   { id: 5, title: "WORK WITH ME", path: "/work-with-me" },
-  { id: 6, title: "BLOG", path: "/blog" },
+  { id: 6, title: "BLOG", path: "/blogs" },
 ];
 
 function Header() {
@@ -19,10 +19,8 @@ function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between py-3 gap-[80px] cContainer text-[#274C69] font-bold h-[8.57vw]">
-      {/* <div className="flex items-center">
-        <img src={logo} alt="Logo" className="h-10 w-auto" />
-      </div> */}
+    <header className="flex items-center justify-between p-3 m-3 gap-[80px] cContainer text-[#274C69] font-bold h-[8.57vw] ">
+    
       <nav className="hidden md:flex md:justify-between space-x-4  w-full">
         {navItems.slice(0, 3).map((item) => (
           <Link

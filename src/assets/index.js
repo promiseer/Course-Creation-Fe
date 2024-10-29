@@ -45,6 +45,8 @@ import bookslanfLarge from "../assets/booksland.svg";
 import book from "../assets/book.svg";
 import iconImage from "../assets/icons/layericons.png";
 import iconLock from "../assets/icons/lockicons.svg";
+import stephhome from "../assets/steph.png";
+import stephMob from "../assets/stephMob.png";
 
 export {
   imgOne,
@@ -94,4 +96,6 @@ export {
   bookslandimg1,
   iconImage,
   iconLock,
+  stephhome,
+  stephMob
 };
