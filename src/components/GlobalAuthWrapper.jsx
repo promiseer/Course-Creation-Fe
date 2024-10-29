@@ -8,6 +8,7 @@ const GlobalAuthWrapper = ({ children }) => {
   const publicRoutes = [
     "/",
     "/login",
+    "/reset",
     "/signup",
     "/home",
     "/upsale",
@@ -19,6 +20,8 @@ const GlobalAuthWrapper = ({ children }) => {
     "/coaching",
     "/coachingDetails",
     "/speaking",
+    "/checkout",
+    "/success"
   ];
   
 

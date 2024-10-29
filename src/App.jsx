@@ -37,6 +37,8 @@ import {
   Books,
   Coaching,
   CoachingDetails,
+  NotFound,
+  Reset,
 } from "./pages";
 // import Home from "./pages/home";
 import StripeProvider from "./components/payments/StripeProvider";
@@ -65,6 +67,7 @@ function Layout() {
   const noNavbarRoutes = [
     "/",
     "/login",
+    "/reset",
     "/signup",
     "/checkout",
     "/success",
@@ -124,12 +127,7 @@ function Layout() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/upsale"
-          element={
-              <CourseUpsale />
-          }
-        />
+        <Route path="/upsale" element={<CourseUpsale />} />
         <Route
           path="/courses/:courseId"
           element={
@@ -199,23 +197,20 @@ function Layout() {
         <Route
           path="/checkout"
           element={
-            <ProtectedRoute>
-              <StripeProvider>
-                <Checkout />
-              </StripeProvider>
-            </ProtectedRoute>
+            <StripeProvider>
+              <Checkout />
+            </StripeProvider>
           }
         />
         <Route
           path="/success"
           element={
-            <ProtectedRoute>
               <Success />
-            </ProtectedRoute>
           }
         />
 
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/reset" element={<Reset />} />
+        <Route path="*" element={<NotFound />} />
 
         {/* <Route path="/logout" element={<Logout />} /> */}
       </Routes>

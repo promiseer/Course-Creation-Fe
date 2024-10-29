@@ -6,6 +6,7 @@ import Qna from "./Qna";
 import Resources from "./Resources";
 import Support from "./Support";
 import Profile from "./Profile";
+import Reset from "./Reset";
 import NotFound from "./NotFound";
 import Module from "./Module";
 import Lesson from "./Lesson";
@@ -52,4 +53,5 @@ export {
   Coaching,
   CoachingDetails,
   Speaking,
+  Reset,
 };

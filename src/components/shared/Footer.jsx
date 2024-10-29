@@ -5,93 +5,87 @@ import Icons from "../Icons";
 
 function Footer() {
   return (
-    <section className="">
-      <section className="flex md:flex-row py-20 flex-col items-start justify-between gap-7 md:flex-nowrap flex-wrap container">
-        <div className="md:basis-[25%]">
+    <section className="bg-white">
+      <section className="flex flex-col md:flex-row py-20 md:py-10 items-start justify-between gap-7 md:gap-5 cContainer p-8 md:p-2">
+        {/* Logo and Social Links */}
+        <div className="md:basis-[25%] mb-5 md:mb-0">
           <img
             src={Icons.BrandLogo}
-            alt=""
+            alt="Brand Logo"
             className="md:w-[247px] w-[200px]"
           />
           <ul className="flex items-center gap-3 mt-5">
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.twitter} alt="" />
-            </li>
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.facebook} alt="" />
-            </li>
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.telegram} alt="" />
-            </li>
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.youtube} alt="" />
-            </li>
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.tiktok} alt="" />
-            </li>
-
-            <li className="bg-[#376489] p-1 rounded-lg flex items-center justify-center size-[36px]">
-              <img src={Icons.discard} alt="" />
-            </li>
+            {[
+              Icons.twitter,
+              Icons.facebook,
+              Icons.telegram,
+              Icons.youtube,
+              Icons.tiktok,
+              Icons.discard,
+            ].map((icon, index) => (
+              <li
+                key={index}
+                className="bg-[#376489] p-2 rounded-lg flex items-center justify-center w-[36px] h-[36px]"
+              >
+                <img src={icon} alt="social icon" />
+              </li>
+            ))}
           </ul>
         </div>
+
+        {/* About Section */}
         <div className="md:basis-[13%] pt-4">
-          <h2 className="text-[28px] uppercase text-[#376489] mb-4 font-extrabold font-montserrat">
-            ABOUT
+          <h2 className="text-2xl md:text-[28px] uppercase text-[#376489] mb-4 font-extrabold font-montserrat">
+            About
           </h2>
           <ul className="flex flex-col text-[#376489] gap-3 font-bold text-lg">
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">Contact Us </Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">Resources</Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">Podcast</Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">Books</Link>
-            </li>
+            {["Contact Us", "Resources", "Podcast", "Books"].map(
+              (item, index) => (
+                <li key={index} className="hover:underline py-1 transition-all">
+                  <Link to="">{item}</Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
+
+        {/* Courses Section */}
         <div className="md:basis-[18%] pt-4">
-          <h2 className="text-[28px] uppercase text-[#376489] mb-4 font-extrabold font-montserrat">
+          <h2 className="text-2xl md:text-[28px] uppercase text-[#376489] mb-4 font-extrabold font-montserrat">
             Courses
           </h2>
           <ul className="flex flex-col text-[#376489] gap-3 font-bold text-lg">
-            <li className="hover:underline py-1 transition-all">
-              <Link to=""> Rising Emotional Intelligent Kids </Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">
-                Decoding & defusing your child’s challenging behavior{" "}
-              </Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to="">Supporting Anxious & Sensitive Kids</Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to=""> Help! i’m a shouty Parent!</Link>
-            </li>
-            <li className="hover:underline py-1 transition-all">
-              <Link to=""> Emotional Intelligence & freedom technique</Link>
-            </li>
+            {[
+              "Rising Emotional Intelligent Kids",
+              "Decoding & Defusing Your Child’s Challenging Behavior",
+              "Supporting Anxious & Sensitive Kids",
+              "Help! I’m a Shouty Parent!",
+              "Emotional Intelligence & Freedom Technique",
+            ].map((course, index) => (
+              <li key={index} className="hover:underline py-1 transition-all">
+                <Link to="">{course}</Link>
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="md:basis-[30%] uppercase pt-4">
-          <h2 className="text-[28px] text-[#376489] mb-4 font-extrabold font-montserrat">
+
+        {/* Awards Section */}
+        <div className="md:basis-[30%] pt-4">
+          <h2 className="text-2xl md:text-[28px] uppercase text-[#376489] mb-4 font-extrabold font-montserrat">
             Awards
           </h2>
-          <ul className="flex items-center gap-2">
+          <ul className="flex items-center gap-3">
             <li>
-              <img src={award1} alt="" />{" "}
+              <img src={award1} alt="Award 1" className="w-[60px] md:w-auto" />
             </li>
             <li>
-              <img src={award2} alt="" />{" "}
+              <img src={award2} alt="Award 2" className="w-[60px] md:w-auto" />
             </li>
           </ul>
         </div>
       </section>
+
+      {/* Footer */}
       <div className="bg-[#C1989F] text-[#FAF5F0] text-center py-4 text-[20px] font-semibold">
         © 2024 Stephanie Pinto. All rights reserved.
       </div>

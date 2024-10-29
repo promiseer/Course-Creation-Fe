@@ -9,12 +9,13 @@ import {
   courseImgTwo,
 } from "../../assets";
 import SubscribeSection from "../../components/website/SubscribeSection";
+import { Link } from "react-router-dom";
 
 function WebsiteCourses() {
   // Array of course data
   const courses = [
     {
-      id: 1,
+      id: 27,
       imgSrc: courseImgOne,
       title: (
         <h2 className="text-[#376489] font-extrabold font-montserrat md:text-[40px] text-[24px] relative z-10 mb-3">
@@ -62,7 +63,7 @@ function WebsiteCourses() {
       ),
     },
     {
-      id: 3,
+      id: 145,
       imgSrc: courseImgThree,
       title: (
         <h2 className="text-[#376489] font-extrabold font-montserrat md:text-[40px] text-[24px] relative z-10 mb-3">
@@ -110,7 +111,7 @@ function WebsiteCourses() {
       ),
     },
     {
-      id: 5,
+      id: 143,
       imgSrc: courseImgFive,
       title: (
         <h2 className="text-[#376489] font-extrabold font-montserrat md:text-[40px] text-[24px] relative z-10 mb-3">
@@ -134,7 +135,7 @@ function WebsiteCourses() {
       ),
     },
     {
-      id: 6,
+      id: 69,
       imgSrc: courseImgSix,
       title: (
         <h2 className="text-[#376489] font-extrabold font-montserrat md:text-[40px] text-[24px] relative z-10 mb-3">
@@ -163,20 +164,26 @@ function WebsiteCourses() {
     <div className="w-full">
       <Header />
       {/* Courses Intro Section */}
-      <div className="coursesbg text-center py-24">
-        <div className="container md:w-[70%] mx-auto">
-          <h3 className="text-[#376489] font-extrabold md:text-[60px] text-[30px] mb-4">
-            COURSES
-          </h3>
-          <p className="text-lg text-[#274C69] font-montserrat font-medium leading-[26px] mb-3">
-          Whether you&apos;re looking to learn about emotional intelligence at home or in the workplace, you'll find courses on topics like parenting strategies, workplace teamwork, and personal development to enhance your emotional awareness and skills.
-          </p>
-          {/* <p className="text-lg text-[#274C69] font-montserrat font-medium leading-[26px]">
+      <section className="flex relative flex-col justify-center items-center px-20 py-24 w-full min-h-[436px] max-md:px-5 max-md:py-24 max-md:max-w-full">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f45e0e740c483c15ab3bd03f845e5e9e6180e0fb96cf7f237b32085dfbc4c95?placeholderIfAbsent=true&apiKey=ef178f19b00f46df9e6f7824633e0af0"
+          className="object-cover absolute inset-0 size-full"
+          alt=""
+        />
+        <div className="flex relative flex-col -mb-5 max-w-full w-[1015px] max-md:mb-2.5">
+          <h1 className="self-center text-6xl font-extrabold leading-none uppercase text-slate-600 max-md:text-4xl">
+            Courses
+          </h1>
+          <p className="mt-8 text-xl font-medium leading-7 text-cyan-900 max-md:max-w-full">
+            Lorem ipsum dolor sit amet consectetur. Nibh consectetur mi nulla
+            nec. Risus id risus risus duis quisque dignissim amet.
+            <br />
             Tempus enim volutpat elit vel a nisl eu felis. Leo eget donec
             ullamcorper adipiscing faucibus blandit.
-          </p> */}
+          </p>
         </div>
-      </div>
+      </section>
 
       {/* Courses Section */}
       {courses.map((course, index) => (
@@ -199,11 +206,16 @@ function WebsiteCourses() {
               </h3>
               {course.title}
               {course.description}
-              <button className="uppercase bg-[#376489] relative z-10 px-10 text-[16px] md:w-[330px] w-[180px] h-[45px] font-semibold rounded-full text-[#F1E1E4] mt-10">
-                Apply Now
-              </button>
+              <Link
+                to={`/upsale?courseId=${course.id}`}
+                key={course.id + index}
+              >
+                <button className="uppercase bg-[#376489] relative z-10 px-10 text-[16px] md:w-[330px] w-[180px] h-[45px] font-semibold rounded-full text-[#F1E1E4] mt-10">
+                  Apply Now
+                </button>
+              </Link>
             </div>
-            <div className="md:basis-[45%] flex items-center">
+            <div className="md:basis-[45%] flex items-center md:mr-6">
               <img
                 src={course.imgSrc}
                 alt={`course-${index + 1}`}
