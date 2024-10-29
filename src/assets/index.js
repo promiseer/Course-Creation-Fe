@@ -55,7 +55,14 @@ import howitworkslighticon from './icons/howitworkslighticon.svg'
 import howitworksDonorIcon from './icons/howitworksDonorIcon.svg'
 import previewBlogHomePage from './home/previewBlogHomePage.svg'
 import homePageHi_ImStephanie from './home/Hi-I-m-Stephanie.svg'
+import bookHeroSection from './bookHeroSection.jpg'
+import ChaosBooks from './ChaosBooks.svg'
+import orderSignedFrom from './order-signed.svg'
+
 export {
+  orderSignedFrom,
+  ChaosBooks,
+  bookHeroSection,
   homePageHi_ImStephanie,
   previewBlogHomePage,
   howitworksDonorIcon,

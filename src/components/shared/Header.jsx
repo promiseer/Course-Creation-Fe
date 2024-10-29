@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import Icons from "../../components/Icons";
 
@@ -6,9 +6,18 @@ const navItems = [
   { id: 1, title: "ABOUT", path: "/about" },
   { id: 2, title: "COURSES", path: "/courses-info" },
   { id: 3, title: "RESOURCES", path: "/resources" },
-  { id: 4, title: "BOOK", path: "/books" },
-  { id: 5, title: "WORK WITH ME", path: "/work-with-me" },
-  { id: 6, title: "BLOG", path: "/blogs" },
+  {
+    id: 4, com: <Link to="/home">
+      <img
+        src={Icons.BrandLogo}
+        alt="Logo"
+        className="mx-4 w-32"
+      />
+    </Link>
+  },
+  { id: 5, title: "BOOK", path: "/books" },
+  { id: 6, title: "WORK WITH ME", path: "/work-with-me" },
+  { id: 7, title: "BLOG", path: "/blogs" },
 ];
 
 function Header() {
@@ -20,39 +29,34 @@ function Header() {
 
   return (
     <header className="flex items-center justify-between p-2 container text-[#274C69] font-bold">
-      <nav className="hidden md:flex md:justify-between space-x-4 w-full">
-        {navItems.slice(0, 3).map((item) => (
-          <Link
-            key={item.id}
-            to={item.path}
-            className="text-gray-600 hover:text-gray-900 font-raleway"
-          >
-            {item.title}
-          </Link>
-        ))}
+      <nav className="hidden md:flex md:justify-between items-center space-x-4 w-full">
+        {navItems.map((item) => {
+          return (
+            <Fragment key={item.id}>
+              {item.id === 4 ? item.com : <Link
+                key={item.id}
+                to={item.path}
+                className="text-gray-600 hover:text-gray-900 font-raleway"
+              >
+                {item.title}
+              </Link>}
+
+            </Fragment>
+          )
+        })}
       </nav>
+
+      <div className="w-full flex justify-between items-center md:hidden">
       <Link to="/home">
-        <img
-          src={Icons.BrandLogo}
-          alt="Logo"
-          className="!ml-22 md:ml-4  mx-4 md:w-[280px] w-[130px]"
-        />
-      </Link>{" "}
-      <nav className="hidden md:flex md:justify-between  space-x-4  w-full">
-        {navItems.slice(3).map((item) => (
-          <Link
-            key={item.id}
-            to={item.path}
-            className="text-gray-600 hover:text-gray-900"
-          >
-            {item.title}
-          </Link>
-        ))}
-      </nav>
-      <div className="md:hidden">
+      <img
+        src={Icons.BrandLogo}
+        alt="Logo"
+        className="!ml-22 md:ml-4  mx-4 w-32"
+      />
+    </Link>
         <button
           onClick={toggleMenu}
-          className="text-gray-600 hover:text-gray-900"
+          className="text-gray-600 text-3xl hover:text-gray-900"
         >
           ☰
         </button>
