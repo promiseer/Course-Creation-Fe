@@ -65,8 +65,16 @@ import PrivateParentCoaching from './PrivateParentCoaching.svg'
 import CoolKidsAnxiety from './Cool-Kids-Anxiety.svg'
 import EFTTappingSessions from './EFT-Tapping-Sessions.svg'
 import coachingdetailheader from './coachingdetail-header.svg'
+import CoolKidsSessionsOver from './CoolKidsSessionsOver.jpg'
+import checkIcon from './checkIcon.svg'
+import whatTopcis from './what-topcis.svg'
+import ImageWhatTopics from './Image (1).jpg'
 
 export {
+  ImageWhatTopics,
+  whatTopcis,
+  checkIcon,
+  CoolKidsSessionsOver,
   coachingdetailheader,
   EFTTappingSessions,
   CoolKidsAnxiety,
