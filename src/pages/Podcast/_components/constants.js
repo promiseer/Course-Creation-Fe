@@ -1,9 +1,9 @@
-import Twitter from '../../../../public/images/Podcast/twitter.svg';
-import Facebook from '../../../../public/images/Podcast/facebook.svg';
-import Telegram from '../../../../public/images/Podcast/telegram.svg';
-import Youtube from '../../../../public/images/Podcast/youtube.svg';
-import Tiktok from '../../../../public/images/Podcast/tiktok.svg';
-import Discord from '../../../../public/images/Podcast/discord.svg';
+import Twitter from '../../../assets/Podcast/twitter.svg';
+import Facebook from '../../../assets/Podcast/facebook.svg';
+import Telegram from '../../../assets/Podcast/telegram.svg';
+import Youtube from '../../../assets/Podcast/youtube.svg';
+import Tiktok from '../../../assets/Podcast/tiktok.svg';
+import Discord from '../../../assets/Podcast/discord.svg';
 
 export const socialMediaIcons = [
   { icon: Twitter, alt: 'Twitter' },

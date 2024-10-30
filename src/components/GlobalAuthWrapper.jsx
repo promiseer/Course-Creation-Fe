@@ -22,7 +22,8 @@ const GlobalAuthWrapper = ({ children }) => {
     "/work-with-me/speaking",
     "/checkout",
     "/success",
-    "/not-found"
+    "/not-found",
+    "/podcast"
   ];
   
 

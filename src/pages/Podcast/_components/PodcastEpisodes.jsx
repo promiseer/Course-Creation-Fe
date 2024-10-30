@@ -105,7 +105,7 @@ const PodcastEpisode = ({ episode }) => (
   </div>
 );
 
-function PodcastEpisodes() {
+export function PodcastEpisodes() {
   return (
     <div className='container px-4 mx-auto'>
       <div className='pt-16 md:pt-24'>
@@ -122,4 +122,3 @@ function PodcastEpisodes() {
   );
 }
 
-export default PodcastEpisodes;

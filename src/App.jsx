@@ -42,6 +42,7 @@ import {
 } from "./pages";
 // import Home from "./pages/home";
 import StripeProvider from "./components/payments/StripeProvider";
+import Podcast from "./pages/site/Podcast";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,7 +81,8 @@ function Layout() {
     "/coachingDetails",
     "/work-with-me/coaching",
     "/work-with-me/speaking",
-    "/not-found"
+    "/not-found",
+    "/podcast"
   ];
 
   return (
@@ -102,6 +104,7 @@ function Layout() {
         <Route path="/work-with-me/speaking" element={<Speaking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/podcast" element={<Podcast />} />
 
         {/*Protected  Routes */}
         <Route
