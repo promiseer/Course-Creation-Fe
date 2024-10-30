@@ -20,8 +20,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   build: {
-    outDir: '../platform/',
-    emptyOutDir: true,
+    outDir: 'dist' 
   },
   server: {
     proxy: {
