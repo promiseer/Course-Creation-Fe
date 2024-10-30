@@ -10,12 +10,13 @@ import ToolsIcon from "../../assets/coachingDetails/tools.png"
 import TrapsIcon from "../../assets/coachingDetails/traps.png"
 import ConfidentIcon from "../../assets/coachingDetails/confident.png"
 import CalmIcon from "../../assets/coachingDetails/calm.png"
+import { coachingdetailheader } from "../../assets";
 
 function CoachingDetails() {
   return (
     <section className="coachingDetail">
       <Header />
-      <section className="header">
+      <section style={{backgroundImage:`url("${coachingdetailheader}")`}} className=" min-h-[100vh] header">
         <div className="headerWrapper">
           <div className="headerContainer">
             <img src={MacQauireLogo} alt="" />
