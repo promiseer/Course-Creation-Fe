@@ -27,6 +27,7 @@ import {
   howitworksDonorIcon,
   previewBlogHomePage,
   homePageHi_ImStephanie,
+  brandBg,
 } from "../../assets";
 import Header from "../../components/shared/Header";
 import Footer from "../../components/shared/Footer";
@@ -136,7 +137,8 @@ function Home() {
           </p>
         </div>
       </div>
-      <div className="bg-textPrimary w-full h-[200px] space-x-3 logosSec flex items-center justify-between px-12 overflow-y-hidden">
+      <div  style={{ backgroundImage: `url(${brandBg})` }}
+        className=" bg-no-repeat bg-contain w-full h-[200px] space-x-3 logosSec flex items-center justify-between px-12 overflow-y-hidden">
         <img  src={maskLogoOne} alt="" />
         <img  src={maskLogoTwo} alt="" />
         <img  src={maskLogoThree} alt="" />

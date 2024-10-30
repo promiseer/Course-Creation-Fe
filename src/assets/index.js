@@ -69,8 +69,10 @@ import CoolKidsSessionsOver from './CoolKidsSessionsOver.jpg'
 import checkIcon from './checkIcon.svg'
 import whatTopcis from './what-topcis.svg'
 import ImageWhatTopics from './Image (1).jpg'
+import brandBg from './speaker/brandBg.jpg'
 
 export {
+  brandBg,
   ImageWhatTopics,
   whatTopcis,
   checkIcon,

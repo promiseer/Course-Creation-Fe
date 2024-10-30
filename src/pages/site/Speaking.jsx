@@ -21,6 +21,7 @@ import {
   maskLogoThree,
   maskLogoTwo,
   homePageHi_ImStephanie,
+  brandBg,
 } from "../../assets";
 
 function Speaking() {
@@ -55,40 +56,45 @@ function Speaking() {
       </div>
 
       <section
-        // style={{ backgroundImage: `url("${CoolKidsSessionsOver}")` }}
-        className="py-10 relative bg-[#C2D5E4] flex flex-col md:flex-col lg:flex-col sm:flex-cols items-center coolkids"
+        style={{ backgroundImage: `url("${sedonnd_bg}")` }}
+        className=" bg-no-repeat bg-contain py-10 relative bg-[#FAF5F000] min-h-[80vh] flex flex-col md:flex-col lg:flex-col sm:flex-cols justify-center coolkids"
       >
         <div className="block sm:hidden md:hidden lg:hidden">
-          <span>{/* <img src={CoolKidImage} className="w-[90%]" /> */}</span>
+          <span>
+            <img src={AboutImage} className="w-[90%]" />
+          </span>
         </div>
 
         <div className="container my-6">
-          <h1 className="mb-3 font-montserrat font-extrabold md:text-[34px] text-[22px] text-[#C1989F]">
-            About
-          </h1>
-          <p className="text-[#274C69] text-lg font-medium leading-[24.1px] font-montserrat mt-3">
-            Is the Emotional Intelligence Mentor for Australia’s Nurture
-            Parenting Magazine and regularly contributes to publications such as
-            Guide & Grow, Kiddiepedia, and Teachers Matter.
-            <br /> <br />
-            She has received awards for her work from prestigious organisations
-            such as Women With Altitude and Ausmumpreneur.
-            <br />
-            Stephanie is also an accredited paediatric anxiety therapist and
-            former speech pathologist.
-            <br />
-          </p>
+          <div className="w-full flex flex-col justify-center sm:w-1/2 md:w-1/2 lg:w-1/2">
+            <h1 className="mb-3 font-montserrat font-extrabold md:text-[34px] text-[22px] text-[#C1989F]">
+              About
+            </h1>
+            <p className="text-[#274C69] text-lg font-medium leading-[24.1px] font-montserrat mt-3">
+              Is the Emotional Intelligence Mentor for Australia’s Nurture
+              Parenting Magazine and regularly contributes to publications such as
+              Guide & Grow, Kiddiepedia, and Teachers Matter.
+              <br /> <br />
+              She has received awards for her work from prestigious organisations
+              such as Women With Altitude and Ausmumpreneur.
+              <br />
+              Stephanie is also an accredited paediatric anxiety therapist and
+              former speech pathologist.
+              <br />
+            </p>
+          </div>
         </div>
-        <div className=" absolute right-1 top-[30%] hidden sm:block md:block lg:block">
+        <div className=" absolute right-1 top-[20%] hidden sm:block md:block lg:block">
           <img src={AboutImage} className="h-[50vh]" />
         </div>
       </section>
 
-      <div className=" bg-cover bg-no-repeat c_2 bg-[#F1E1E4]">
+      <div
+        style={{ backgroundImage: `url("${stephanie_bg}")` }}
+        className="  bg-contain bg-right-bottom bg-no-repeat c_2 bg-[#F1E1E4]">
         <div className="container flex items-center justify-start md:py-28 md:pt-28 pt-5 md:flex-nowrap flex-wrap-reverse relative ">
           <div
             className="md:w-[55%] w-[90%] mx-auto md:absolute z-50 p-7 md:px-20 right-[3%] md:-translate-y-0 -translate-y-20"
-            style={{ backgroundImage: `url("${stephanie_bg}")` }}
           >
             <div>
               <img className="h-16" alt="sign" src={Stephanie_Pinto_sign} />
@@ -128,7 +134,9 @@ function Speaking() {
         </div>
       </div>
 
-      <div className="bg-textPrimary w-full h-[200px] space-x-3 logosSec flex items-center justify-between px-12 overflow-y-hidden">
+      <div
+        style={{ backgroundImage: `url(${brandBg})` }}
+        className=" bg-no-repeat bg-contain w-full h-[200px] space-x-3 logosSec flex items-center justify-between px-12 overflow-y-hidden">
         <img src={maskLogoOne} alt="" />
         <img src={maskLogoTwo} alt="" />
         <img src={maskLogoThree} alt="" />
