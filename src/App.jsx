@@ -76,9 +76,11 @@ function Layout() {
     "/blogs",
     "/blogdetails",
     "/books",
-    "/coaching",
+    "/resources",
     "/coachingDetails",
-    "/speaking",
+    "/work-with-me/coaching",
+    "/work-with-me/speaking",
+    "/not-found"
   ];
 
   return (
@@ -95,9 +97,9 @@ function Layout() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogdetails" element={<Blogsdetails />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/coaching" element={<Coaching />} />
+        <Route path="/work-with-me/coaching" element={<Coaching />} />
         <Route path="/coachingDetails" element={<CoachingDetails />} />
-        <Route path="/speaking" element={<Speaking />} />
+        <Route path="/work-with-me/speaking" element={<Speaking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
 
@@ -210,6 +212,7 @@ function Layout() {
         />
 
         <Route path="/reset" element={<Reset />} />
+        <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
 
         {/* <Route path="/logout" element={<Logout />} /> */}
