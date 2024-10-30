@@ -58,8 +58,32 @@ import homePageHi_ImStephanie from './home/Hi-I-m-Stephanie.svg'
 import bookHeroSection from './bookHeroSection.jpg'
 import ChaosBooks from './ChaosBooks.svg'
 import orderSignedFrom from './order-signed.svg'
+import coachingheader from './coaching/header_bg.png'
+import evolveImage from './evolveImage.svg'
+import evolveEmotion from './evolveEmotion.svg'
+import PrivateParentCoaching from './PrivateParentCoaching.svg'
+import CoolKidsAnxiety from './Cool-Kids-Anxiety.svg'
+import EFTTappingSessions from './EFT-Tapping-Sessions.svg'
+import coachingdetailheader from './coachingdetail-header.svg'
+import CoolKidsSessionsOver from './CoolKidsSessionsOver.jpg'
+import checkIcon from './checkIcon.svg'
+import whatTopcis from './what-topcis.svg'
+import ImageWhatTopics from './Image (1).jpg'
+import brandBg from './speaker/brandBg.jpg'
 
 export {
+  brandBg,
+  ImageWhatTopics,
+  whatTopcis,
+  checkIcon,
+  CoolKidsSessionsOver,
+  coachingdetailheader,
+  EFTTappingSessions,
+  CoolKidsAnxiety,
+  PrivateParentCoaching,
+  evolveEmotion,
+  evolveImage,
+  coachingheader,
   orderSignedFrom,
   ChaosBooks,
   bookHeroSection,

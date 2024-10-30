@@ -42,6 +42,7 @@ import {
 } from "./pages";
 // import Home from "./pages/home";
 import StripeProvider from "./components/payments/StripeProvider";
+import Podcast from "./pages/site/Podcast";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,9 +77,12 @@ function Layout() {
     "/blogs",
     "/blogdetails",
     "/books",
-    "/coaching",
+    "/resources",
     "/coachingDetails",
-    "/speaking",
+    "/work-with-me/coaching",
+    "/work-with-me/speaking",
+    "/not-found",
+    "/podcast"
   ];
 
   return (
@@ -95,11 +99,12 @@ function Layout() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogdetails" element={<Blogsdetails />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/coaching" element={<Coaching />} />
+        <Route path="/work-with-me/coaching" element={<Coaching />} />
         <Route path="/coachingDetails" element={<CoachingDetails />} />
-        <Route path="/speaking" element={<Speaking />} />
+        <Route path="/work-with-me/speaking" element={<Speaking />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/podcast" element={<Podcast />} />
 
         {/*Protected  Routes */}
         <Route
@@ -210,6 +215,7 @@ function Layout() {
         />
 
         <Route path="/reset" element={<Reset />} />
+        <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
 
         {/* <Route path="/logout" element={<Logout />} /> */}

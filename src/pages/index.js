@@ -25,6 +25,7 @@ import Blogsdetails from "./site/Blogsdetails";
 import Coaching from "./site/Coaching";
 import CoachingDetails from "./site/CoachingDetails";
 import Speaking from "./site/Speaking";
+import Podcast from "./site/Podcast";
 
 export {
   Signin,

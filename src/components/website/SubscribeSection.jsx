@@ -9,7 +9,7 @@ function SubscribeSection() {
         <div className="container grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
           <div className="w-full mt-[18rem] md:mt-0 sm:mt-0 lg:mt-0">
             <div className="text-[#376489] flex flex-col items-center  withbeforetitle relative">
-              <span className="  absolute -top-6 font-extrabold md:text-[xl] text-[34px] text-center bg-[#C2D5E4] px-4">
+              <span className="  absolute -top-6 font-extrabold md:text-[xl] text-4xl text-center bg-[#C2D5E4] px-4">
                 Love what you're reading
               </span>
               <div className="font-mognolia font-normal md:text-[55px] text-[34px] border-1 border-[#738CA5] px-6 md:py-10 py-4 flex items-center justify-center">

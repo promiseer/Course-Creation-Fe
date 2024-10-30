@@ -12,6 +12,7 @@ import t8 from '../assets/t8.svg';
 import t9 from '../assets/t9.svg';
 import Navbarr from '../components/navdeux';
 import Navbarrr from '../components/navv';
+import Header from '../components/shared/Header';
 
 const Resources = () => {
   // Array of image objects with paths and text
@@ -31,7 +32,7 @@ const Resources = () => {
   return (
     <div className="bg-[#FAF5F0]">
       {/* Header Section */}
-      <Navbarr/>
+      <Header/>
       <div className="  mx-auto flex flex-col items-center justify-center text-center mb-8 md:mb-[30px] mt-[10px] md:mt-[50px]">
         <h1 className="font-normal  text-[#376489]  font-mognolia text-[40px] md:text-[50px] md:leading-[56px] mt-4">Course Name Resources</h1>
         <p className=" md:mb-[80px] w-[344px] h-[87px]  leading-[18px] md:w-[990px] md:h-[72px]  text-center text-bblue md:text-[18px]  font-montserrat md:leading-[30px]  text-[12px]  ">

@@ -17,11 +17,13 @@ const GlobalAuthWrapper = ({ children }) => {
     "/blogs",
     "/blogdetails",
     "/books",
-    "/coaching",
+    "/work-with-me/coaching",
     "/coachingDetails",
-    "/speaking",
+    "/work-with-me/speaking",
     "/checkout",
-    "/success"
+    "/success",
+    "/not-found",
+    "/podcast"
   ];
   
 
