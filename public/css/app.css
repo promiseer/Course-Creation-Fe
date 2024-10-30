@@ -134,7 +134,10 @@ body {
     w-full
     p-4
     md:p-0
-    bg-themeBg;
+    bg-themeBg
+    bg-opacity-50;
+
+    
 }
 .navbars-menus-block.open {
   @apply block;
@@ -179,7 +182,9 @@ section.section {
     gap-6
     md:gap-x-[92px]
     pt-28
-    px-[5rem];
+    /* px-[5rem] */
+    sm:px-8 
+    md:px-[5rem]; 
 }
 .section-welcome .text-welcome {
   @apply flex
@@ -198,8 +203,9 @@ section.section {
     text-center;
 }
 .section-welcome .text-welcome span {
-  @apply font-mognolia text-[40px] 
-    text-textPrimary;
+  @apply font-mognolia text-[20px] 
+    text-textPrimary 
+    sm:text-[40px];
 }
 .section-welcome .vidio-player {
   @apply w-full
@@ -207,8 +213,13 @@ section.section {
     relative
     p-3
     md:min-h-[304px]
-    h-[29rem];
-}
+    h-[29rem]
+    }
+    @media (max-width: 640px) { /* For small screens */
+      .section-welcome .vidio-player {
+        @apply h-auto /* Adjust height for smaller devices if needed */
+      }
+    }
 .section-welcome .vidio-player .topBgVidio,
 .section-welcome .vidio-player .bottomBgVidio {
   @apply absolute
@@ -230,13 +241,18 @@ section.section {
     z-10;
 }
 
+@media (max-width: 640px) { /* For small screens */
+  .section-welcome .vidio-player iframe {
+    @apply h-[350px]; /* Adjust height for mobile screens */
+  }
+}
 /* Components */
 .customBtnPrimary {
   @apply bg-newprimary
     rounded-full
     min-w-[139px]
-    md:w-[211px]
-    md:h-[45px]
+    /* md:w-[211px] */
+    /* md:h-[45px] */
     flex
     items-center
     justify-center
@@ -245,7 +261,13 @@ section.section {
     font-semibold
     text-white
     px-4
-    py-2;
+    py-2
+}
+@media (max-width: 640px) { /* For small screens */
+  .customBtnPrimary {
+    @apply 
+    w-[200px]
+  }
 }
 
 /* box-tabs */

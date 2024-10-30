@@ -21,10 +21,13 @@ export default function Lesson() {
     useQuery({
       queryKey: ["course-progress", { courseId, userId: parsedUserCookie?.id }], // Use object for clarity
       queryFn: () =>
-        apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
+        apiService.get(
+          `/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`
+        ),
     });
 
-  const lessonCompleted = courseProgressResponse?.data.topics[moduleId]?.[lessonId]; // Added optional chaining
+  const lessonCompleted =
+    courseProgressResponse?.data.topics[moduleId]?.[lessonId]; // Added optional chaining
 
   const { data: lessonDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
@@ -33,24 +36,29 @@ export default function Lesson() {
     });
 
   const lessonDetails = lessonDetailsResponse?.data;
+  console.log(lessonDetails)
 
   const { data: moduleLessonsResponse, isLoading: isGettingCourseModules } =
     useQuery({
       queryKey: ["moduleLessons", moduleId],
       queryFn: () =>
-        apiService.get(`/ldlms/v2/sfwd-lessons?module=${moduleId}&course=${courseId}`),
+        apiService.get(
+          `/ldlms/v2/sfwd-lessons?module=${moduleId}&course=${courseId}`
+        ),
     });
 
   // Mutation for marking as complete
-  const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } = useMutation({
-    mutationFn: (data) => apiService.post(`/cct/v1/mark-lesson-complete`, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["lesson-details", lessonId]);
-    },
-    onError: (error) => {
-      console.error("Error marking lesson as complete:", error);
-    },
-  });
+  const { mutate: markAsCompleteOrIncomplete, isLoading: isMarkingComplete } =
+    useMutation({
+      mutationFn: (data) =>
+        apiService.post(`/cct/v1/mark-lesson-complete`, data),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["lesson-details", lessonId]);
+      },
+      onError: (error) => {
+        console.error("Error marking lesson as complete:", error);
+      },
+    });
 
   // Handle Mark as Complete click
   const handleMarkAsComplete = () => {
@@ -66,9 +74,9 @@ export default function Lesson() {
   };
 
   const findAdjacentIds = (arr, targetId) => {
-    const index = arr.findIndex(item => item.id == targetId);
+    const index = arr.findIndex((item) => item.id == targetId);
     if (index === -1) {
-      return { message: 'ID not found' };
+      return { message: "ID not found" };
     }
 
     const previousId = index > 0 ? arr[index - 1].id : null;
@@ -80,13 +88,32 @@ export default function Lesson() {
     };
   };
 
-  const adjacentIds = moduleLessonsResponse?.data ? findAdjacentIds(moduleLessonsResponse.data, lessonId) : {};
-
+  const adjacentIds = moduleLessonsResponse?.data
+    ? findAdjacentIds(moduleLessonsResponse.data, lessonId)
+    : {};
+  const courseDetails = undefined;
+  const moduleDetails = undefined;
   return (
-    <section className="section section-welcome">
-      <div className="col-span-12 md:col-span-12 flex flex-col px-[15vw]">
+    <section className="section section-welcome px-[1vw] sm:px-[1vw]">
+      <div className="col-span-12 md:col-span-12 flex flex-col px-[1vw] sm:px-[1vw] md:px-[15vw]">
+        {/* Breadcrumb Section */}
+        <div className="breadcrumb flex font-mognolia text-sm  text-textPrimary mb-2 whitespace-nowrap overflow-hidden text-ellipsis">
+          <Link
+            to={`/courses/${courseId}`}
+            className="hover:underline truncate"
+          >
+            {courseDetails?.name || "Course Name"}
+          </Link>
+          <span>/</span>
+          <Link
+            to={`/courses/${courseId}/modules/${moduleId}`}
+            className="hover:underline truncate"
+          >
+            {moduleDetails?.name || "Module Name"}
+          </Link>
+          <span>/</span>
+        </div>
         <div className="text-welcome">
-          <span>Welcome</span>
           <span>{decode(lessonDetails?.title?.rendered || "")}</span>
         </div>
         <div className="vidio-player">
@@ -99,43 +126,51 @@ export default function Lesson() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-          <img
-            src={Icons.BottomVidioLine}
-            className="bottomBgVidio"
-            alt=""
-          />
+          <img src={Icons.BottomVidioLine} className="bottomBgVidio" alt="" />
         </div>
-        <div className="flex flex-row items-center justify-between gap-4 mt-5">
-          <div className="w-1/4">
+        <div className="flex flex-col md:flex-row items-center justify-start sm:justify-center  md:justify-between gap-4 mt-1">
+          <div className=" md:w-1/4">
             {adjacentIds.previousId && (
-              <Link to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`} className="btn customBtnPrimary">
-                <span>Previous Lesson</span>
+              <Link
+                to={`/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.previousId}`}
+                className="btn customBtnPrimary"
+              >
                 <i className="bi bi-chevron-left"></i>
+                <span className="ml-2">Previous Lesson</span>
               </Link>
             )}
           </div>
-          <div className="w-1/4">
-            {!isGettingCourseProgress && (
-              lessonCompleted ? (
+          <div className=" md:w-1/4">
+            {!isGettingCourseProgress &&
+              (lessonCompleted ? (
                 <div className="btn customBtnPrimary">
                   <span>Lesson Completed</span>
-                  <span className="text-green text-[20px]">&#10003;</span>
+                  <span className="text-green text-[16px]">&#10003;</span>
                 </div>
               ) : (
-                <button onClick={handleMarkAsComplete} className="btn customBtnPrimary">
+                <div
+                  onClick={handleMarkAsComplete}
+                  className="btn customBtnPrimary"
+                >
                   <span>Mark as Complete</span>
-                </button>
-              )
-            )}
+                </div>
+              ))}
           </div>
-          <div className="w-1/4">
-            {adjacentIds.nextId && (
-              <Link to={lessonCompleted ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}` : ''} className="btn customBtnPrimary">
+          {adjacentIds.nextId && (
+            <div className=" md:w-1/4 mb-2.5">
+              <Link
+                to={
+                  lessonCompleted
+                    ? `/courses/${courseId}/modules/${moduleId}/lesson/${adjacentIds.nextId}`
+                    : ""
+                }
+                className="btn customBtnPrimary"
+              >
                 <span>Next Lesson</span>
-                <i className="bi bi-chevron-right"></i>
+                <i className="bi bi-chevron-right ml-2"></i>
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

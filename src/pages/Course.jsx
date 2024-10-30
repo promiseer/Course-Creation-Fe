@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CourseDetails from '../components/CourseDetails.jsx'; // Left column component (video & course content)
+import CoursePage from '../components/CourseDetails.jsx'; // Left column component (video & course content)
 import Card from '../components/card.jsx'; // Right column component (module list)
 import { useQuery } from "@tanstack/react-query";
 import { useApiService } from "../hooks/axios";
@@ -28,7 +28,7 @@ export default function Course() {
   const { data: courseDetailsResponse, isLoading: isGettingCourseDetails } =
     useQuery({
       queryKey: ["course-details", `id=${courseId}`],
-      queryFn: () => apiService.get(`/ldlms/v1/sfwd-courses/${courseId}`),
+      queryFn: () => apiService.get(`/cct/v1/courses/${courseId}`),
     });
 
   const courseDetails = courseDetailsResponse?.data;
@@ -50,6 +50,7 @@ export default function Course() {
       borderColor: index % 2 ? 'border-brown' : 'border-dark-blue',
     };
   });
+  const firstModuleId = `/courses/${courseId}/modules/${courseModules?.[0]?.id}` 
 
   //console.log("@@ courseDetails", courseDetails)
   return (
@@ -58,30 +59,30 @@ export default function Course() {
         <div className="flex flex-col md:flex-row mt-[20px]">
           {/* Left Column: Course Page Content */}
           <div className="md:w-[60%] ml-[10px] md:ml-0 flex-grow">
-            <CourseDetails courseName={decode(courseDetails?.title?.rendered || "")}/>
+            <CoursePage courseName={decode(courseDetails?.title?.rendered || "")} firstLessonId={firstModuleId} CouserTitle={"Start Course"} />
           </div>
           {/* Mobile Tabs Section (Visible only on mobile) */}
-          <div className="md:hidden flex justify-center space-x-[10vw] my-4 mb-[30px]">
+          {/* <div className="md:hidden flex justify-center space-x-[10vw] my-4 mb-[30px]"> */}
             {/* My Courses Tab */}
-            <div
+            {/* <div
               onClick={() => setActiveTab('My Courses')}
               className={`text-[4vw] leading-[20px] cursor-pointer font-oswald font-semibold ${
                 activeTab === 'My Courses' ? 'text-bblue border-b-2 border-bblue' : 'text-dark-rose'
               }`}
             >
               My Courses
-            </div>
+            </div> */}
 
             {/* Courses Tab */}
-            <div
+            {/* <div
               onClick={() => setActiveTab('Courses')}
               className={`text-[4vw] leading-[20px] font-semibold font-oswald cursor-pointer ${
                 activeTab === 'Courses' ? 'text-bblue border-b-2 border-bblue' : 'text-dark-rose'
               }`}
             >
               Courses
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
 
           {/* Right Column: Card List, aligned to the right */}
           <div className="md:w-[40%] mt-[20px] md:mt-[50px] flex justify-center md:justify-end">

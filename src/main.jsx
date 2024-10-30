@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // JS Bootstrap
 import App from "./App";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

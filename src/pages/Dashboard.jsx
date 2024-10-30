@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { middleImg } from '../assets';
-import DountLink from '../components/dashboard/DountLink';
-import DountLinkContent from '../components/dashboard/DountLinkContent';
-import { dashboardDountData } from '../statics/dashboardata';
+import { useState } from "react";
+import { middleImg } from "../assets";
+import DountLink from "../components/dashboard/DountLink";
+import DountLinkContent from "../components/dashboard/DountLinkContent";
+import { dashboardDountData } from "../statics/dashboardata";
+import dummydata from "../data/dummydata";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [hoveredItem, setHoveredItem] = useState(0);
+  const [isSelected, setIsSelected] = useState(0);
 
   const reorderedItems = hoveredItem
     ? [
@@ -17,7 +20,7 @@ function Dashboard() {
   return (
     <div className="w-full flex items-center justify-center  py-[100px] ">
       <div className="dashboard-dount">
-        <div className="relative w-[540px] h-[540px] mx-auto ">
+        <div className="relative w-[540px] h-[540px] mx-auto  hidden md:block">
           <svg
             className="overflow-visible"
             width="542"
@@ -53,6 +56,32 @@ function Dashboard() {
               />
             );
           })}
+        </div>
+
+        {/* Mobile View with  Dashboard */}
+        <div className="section-profile">
+          <ul className="section-profile-list md:hidden">
+            {dummydata.myProfiles.map((data, index) => (
+              <li
+                key={index}
+                className={`list-items ${index === isSelected ? "active" : ""}`}
+              >
+                <Link
+                  to={data.link}
+                  onClick={() => setIsSelected(index)}
+                  className="item"
+                  style={{
+                    backgroundImage: `url(${data.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <span className="childname">{data.childname}</span>
+                  <span className="name">{data.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

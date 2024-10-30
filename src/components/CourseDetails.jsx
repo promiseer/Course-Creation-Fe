@@ -1,26 +1,17 @@
 import React, { useState } from "react";
-import next from '../assets/next.svg';
+import next from "../assets/next.svg";
 import { useQuery } from "@tanstack/react-query";
 import { useApiService } from "../hooks/axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Cookies } from "react-cookie";
 import { CourseAccessChecker } from "./access/CourseAccessChecker.jsx";
+import calculateCompletion from "../utils/calculatePercentage.js";
 
 const cookies = new Cookies();
 
-function calculateCompletion(currentValue, targetValue) {
-  if (isNaN(currentValue) || isNaN(targetValue) || currentValue === null || targetValue === null) {
-    return '0';
-  }
-  if (targetValue === 0) {
-    return '0';
-  }
 
-  const percentage = (currentValue / targetValue) * 100;
-  return `${percentage.toFixed(2)}`;
-}
 
-const CoursePage = ({ courseName }) => {
+const CoursePage = ({ courseName, firstLessonId, CouserTitle }) => {
   const apiService = useApiService();
   const { courseId, moduleId } = useParams();
   const [activeTab, setActiveTab] = useState(0);
@@ -31,7 +22,7 @@ const CoursePage = ({ courseName }) => {
   const [checklistItems, setChecklistItems] = useState([
     { label: "Checklist 1", color: "bblue", completed: false },
     { label: "Checklist 2", color: "frose", completed: false },
-    { label: "Checklist 3", color: "frose", completed: false }
+    { label: "Checklist 3", color: "frose", completed: false },
   ]);
 
   const toggleChecklistItem = (index) => {
@@ -41,23 +32,29 @@ const CoursePage = ({ courseName }) => {
   };
 
   const tabs = [
-    { label: 'CHECKLIST', index: 0 },
-    { label: 'WORKSHEET', index: 1 },
-    { label: 'RESOURCES', index: 2 }
+    { label: "CHECKLIST", index: 0 },
+    { label: "WORKSHEET", index: 1 },
+    { label: "RESOURCES", index: 2 },
   ];
 
   const { data: courseProgressResponse, isLoading: isGettingCourseDetails } =
     useQuery({
       queryKey: ["course-progress", `id=${courseId}`],
-      queryFn: () => apiService.get(`/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`),
+      queryFn: () =>
+        apiService.get(
+          `/cct/v1/course-progress?course_id=${courseId}&user_id=${parsedUserCookie?.id}`
+        ),
     });
 
   const courseProgress = courseProgressResponse?.data;
 
-  const progressPercent = courseProgress && calculateCompletion(courseProgress?.completed, courseProgress?.total) || 0
+  const progressPercent =
+    (courseProgress &&
+      calculateCompletion(courseProgress?.completed, courseProgress?.total)) ||
+    0;
   //console.log(userId);
   return (
-    <div className='w-full bg-[#FAF5F0] flex flex-col items-center px-4 md:px-0'>
+    <div className="w-full bg-[#FAF5F0] flex flex-col items-center px-4 md:px-0">
       {/* Header */}
       <div className="text-center md:mb-[20px] mb-[50px] w-full max-w-[890px]">
         <div className="font-normal text-rose text-[41px] font-mognolia leading-[56.4px]">
@@ -90,7 +87,6 @@ const CoursePage = ({ courseName }) => {
                 width="100%"
                 height="100% "
                 src="https://www.youtube.com/embed/dQw4w9WgXcdQ"
-
                 title="Course Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -103,14 +99,18 @@ const CoursePage = ({ courseName }) => {
         {/* Start Course Button (Centered) */}
         <div className="flex justify-center w-full">
           <CourseAccessChecker courseId={courseId} userId={userId}>
-            <button
-              className="bg-dark-blue font-montserrat font-semibold text-[14px] md:text-[22px] text-white w-[170px] h-[30px] md:w-[240px] md:h-[45px] rounded-full flex items-center justify-center gap-3">
-              GO AHEAD
-              <img src={next} alt="Next" className="w-[8px] h-[15px] md:w-[18px] md:h-[18px]" />
-            </button>
+            <Link to={firstLessonId}>
+              <button className="bg-dark-blue font-montserrat font-semibold text-[14px] md:text-[22px] text-white w-[170px] h-[30px] md:w-[240px] md:h-[45px] rounded-full flex items-center justify-center gap-3">
+                {CouserTitle}
+                <img
+                  src={next}
+                  alt="Next"
+                  className="w-[8px] h-[15px] md:w-[18px] md:h-[18px]"
+                />
+              </button>
+            </Link>
           </CourseAccessChecker>
         </div>
-
       </div>
 
       {/* Tabs Section */}
@@ -119,10 +119,11 @@ const CoursePage = ({ courseName }) => {
           <div
             key={index}
             onClick={() => setActiveTab(tab.index)}
-            className={`text-center font-oswald font-semibold text-[16px] md:text-[23px] tracking-wider cursor-pointer ${activeTab === tab.index
-                ? 'text-[#2c3e50] border-b-2 border-[#2c3e50]'  // Active tab
-                : 'text-[#c39ea0] border-b-2 border-transparent hover:text-bblue hover:border-bblue'  // Inactive tab with hover effect
-              }`}
+            className={`text-center font-oswald font-semibold text-[16px] md:text-[23px] tracking-wider cursor-pointer ${
+              activeTab === tab.index
+                ? "text-[#2c3e50] border-b-2 border-[#2c3e50]" // Active tab
+                : "text-[#c39ea0] border-b-2 border-transparent hover:text-bblue hover:border-bblue" // Inactive tab with hover effect
+            }`}
           >
             {tab.label}
           </div>
@@ -142,19 +143,30 @@ const CoursePage = ({ courseName }) => {
                   checked={item.completed}
                   onChange={() => toggleChecklistItem(index)}
                   className={`appearance-none w-5 h-5 border-2 rounded-sm focus:ring-0 cursor-pointer 
-                    ${item.color === "bblue" ? 'border-bblue' : 'border-dark-rose'}`}
+                    ${
+                      item.color === "bblue"
+                        ? "border-bblue"
+                        : "border-dark-rose"
+                    }`}
                   style={{
-                    backgroundColor: item.completed ? 'transparent' : 'transparent',
+                    backgroundColor: item.completed
+                      ? "transparent"
+                      : "transparent",
                     backgroundImage: item.completed
-                      ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${item.color === "bblue" ? '%23274C69' : '%23C1989F'
-                      }' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'%3E%3C/path%3E%3C/svg%3E")`
-                      : 'none',
-                    backgroundPosition: 'center',
-                    backgroundSize: '120%',
-                    backgroundRepeat: 'no-repeat',
+                      ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${
+                          item.color === "bblue" ? "%23274C69" : "%23C1989F"
+                        }' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'%3E%3C/path%3E%3C/svg%3E")`
+                      : "none",
+                    backgroundPosition: "center",
+                    backgroundSize: "120%",
+                    backgroundRepeat: "no-repeat",
                   }}
                 />
-                <span className={`font-montserrat text-[14px] md:text-[20px] ml-3 ${item.color === "bblue" ? 'text-bblue' : 'text-dark-rose'}`}>
+                <span
+                  className={`font-montserrat text-[14px] md:text-[20px] ml-3 ${
+                    item.color === "bblue" ? "text-bblue" : "text-dark-rose"
+                  }`}
+                >
                   {item.label}
                 </span>
               </div>
@@ -163,12 +175,16 @@ const CoursePage = ({ courseName }) => {
         )}
         {activeTab === 1 && (
           <div>
-            <p className="font-montserrat text-[16px] text-dark-blue">Worksheet content goes here.</p>
+            <p className="font-montserrat text-[16px] text-dark-blue">
+              Worksheet content goes here.
+            </p>
           </div>
         )}
         {activeTab === 2 && (
           <div>
-            <p className="font-montserrat text-[16px] text-dark-blue">Resources content goes here.</p>
+            <p className="font-montserrat text-[16px] text-dark-blue">
+              Resources content goes here.
+            </p>
           </div>
         )}
       </div>
@@ -179,7 +195,10 @@ const CoursePage = ({ courseName }) => {
           {progressPercent}% Completed
         </div>
         <div className="w-full border border-bblue h-[5px] md:h-[12px]">
-          <div className="bg-bblue h-[5px] md:h-[12px]" style={{ width: `${progressPercent}%` }}></div>
+          <div
+            className="bg-bblue h-[5px] md:h-[12px]"
+            style={{ width: `${progressPercent}%` }}
+          ></div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import img from '../assets/hero.svg'; // Replace with your actual image path
 import Navbarr from '../components/navdeux';
+import Icons from "../components/Icons.js";
 
 const Support = () => {
   return (
@@ -14,13 +15,23 @@ const Support = () => {
         <img 
           src={img} 
           alt="Hero" 
-          className="w-full h-full  "
+          className="w-full h-full hidden md:block"
+          
         />
       </div>
 
+ {/* Mobile View with Support Icon */}
+      <div className="md:hidden flex flex-col items-center justify-center h-[200px] bg-gray-100">
+        <img 
+          src={Icons.Suportimage} 
+          alt="Support" 
+        />
+      </div>
+
+
       {/* Centered Title */}
-      <div className="text-center  bg-[#FAF5F0] mt-[50px]">
-        <h1 className="text-[#376489] font-magnolia text-[40px] md:text-[48px] leading-[56px] md:leading-[67px]">Support</h1>
+      <div className="font-normal text-center text-[#376489]  text-[41px] font-mognolia leading-[56.4px]">
+Support
       </div>
 
       {/* Content Section */}

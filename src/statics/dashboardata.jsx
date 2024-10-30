@@ -49,7 +49,7 @@ export const dashboardDountData = [
   },
   {
     id: 3,
-    link: '',
+    link: '/coaching',
     img: imgSix,
     width: '',
     height: '',

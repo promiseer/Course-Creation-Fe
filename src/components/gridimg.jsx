@@ -49,18 +49,18 @@ const ImageGrid = ({ images }) => {
   }, [images]);
 
   return (
-    <div className="max-w-[1400px] mx-auto grid grid-cols-2 gap-4 p-4 md:grid-cols-3">
+    <div className="max-w-[1400px] mx-auto grid grid-cols-2 p-2 gap-2 md:grid-cols-3">
       {visibleImages.map((image, index) => (
         <ImageCard key={index} imagePath={image.path} text={image.text} />
       ))}
 
       {/* Return Button */}
-      <div className="w-full mt-4 mb-8 flex justify-center md:justify-end col-span-2 md:col-span-3">
+      {/* <div className="w-full mt-4 mb-8 flex justify-center md:justify-end col-span-2 md:col-span-3">
         <button className="bg-dark-blue font-montserrat font-semibold text-[18px] text-white w-[270px] h-[50px] rounded-full flex items-center justify-center gap-3">
           RETURN TO COURSE
           <img src={next} alt="Next" className=" w-[8px] h-[15px] md:w-[8px] md:h-[15px] object-cover" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
